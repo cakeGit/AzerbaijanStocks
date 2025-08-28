@@ -1,0 +1,32 @@
+[
+  { 
+    "ticker": "AZT", 
+    "name": "AZT Organisation", 
+    "authorUrl": "https://www.curseforge.com/members/azerbaijan_tech/projects",
+    "curseforgeId": "azerbaijan_tech"
+  },
+  { 
+    "ticker": "CTD", 
+    "name": "CakeIsTastyDeveloper", 
+    "authorUrl": "https://www.curseforge.com/members/cakeistastydeveloper/projects",
+    "curseforgeId": "cakeistastydeveloper"
+  },
+  { 
+    "ticker": "KPT", 
+    "name": "Kipiti", 
+    "authorUrl": "https://www.curseforge.com/members/schrimblo/projects",
+    "curseforgeId": "schrimblo"
+  },
+  { 
+    "ticker": "SPY", 
+    "name": "Spydnel", 
+    "authorUrl": "https://www.curseforge.com/members/spydnel/projects",
+    "curseforgeId": "spydnel"
+  },
+  { 
+    "ticker": "DRP", 
+    "name": "DragonsPlus (arch nemesis of azerbaijan tech)", 
+    "authorUrl": "https://www.curseforge.com/members/dragonsplus/projects",
+    "curseforgeId": "dragonsplus"
+  }
+]

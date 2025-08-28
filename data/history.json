@@ -1,0 +1,3047 @@
+{
+  "AZT": [
+    {
+      "timestamp": "2025-08-28T17:51:00.800Z",
+      "price": 99.86,
+      "volume": 54,
+      "change": -0.14
+    },
+    {
+      "timestamp": "2025-08-28T17:52:00.480Z",
+      "price": 99.6,
+      "volume": 54,
+      "change": -0.26
+    },
+    {
+      "timestamp": "2025-08-28T17:53:00.997Z",
+      "price": 99.99,
+      "volume": 54,
+      "change": 0.39,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T17:54:00.405Z",
+      "price": 100.11,
+      "volume": 54,
+      "change": 0.12,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T17:55:00.952Z",
+      "price": 100.51,
+      "volume": 54,
+      "change": 0.4,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T17:56:00.378Z",
+      "price": 100.18,
+      "volume": 54,
+      "change": -0.33,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T17:57:00.070Z",
+      "price": 99.72,
+      "volume": 54,
+      "change": -0.46,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T17:58:00.492Z",
+      "price": 100.04,
+      "volume": 54,
+      "change": 0.32,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T17:59:00.902Z",
+      "price": 99.73,
+      "volume": 54,
+      "change": -0.31,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T18:00:00.281Z",
+      "price": 99.9,
+      "volume": 54,
+      "change": 0.17,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T18:01:00.235Z",
+      "price": 100.24,
+      "volume": 2087,
+      "change": 0.34,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:02:00.310Z",
+      "price": 100.61,
+      "volume": 1281,
+      "change": 0.37,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:03:00.723Z",
+      "price": 100.93,
+      "volume": 1899,
+      "change": 0.32,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:04:00.343Z",
+      "price": 101.65,
+      "volume": 1793,
+      "change": 0.72,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:05:00.746Z",
+      "price": 102.02,
+      "volume": 1573,
+      "change": 0.36,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:06:00.243Z",
+      "price": 102.33,
+      "volume": 1167,
+      "change": 0.3,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:07:00.666Z",
+      "price": 102.62,
+      "volume": 2879,
+      "change": 0.28,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:08:00.275Z",
+      "price": 103.25,
+      "volume": 1038,
+      "change": 0.61,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:09:00.362Z",
+      "price": 103.53,
+      "volume": 1320,
+      "change": 0.27,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:10:00.292Z",
+      "price": 103.67,
+      "volume": 1563,
+      "change": 0.13,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:11:00.758Z",
+      "price": 103.73,
+      "volume": 2114,
+      "change": 0.06,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:12:00.238Z",
+      "price": 104.31,
+      "volume": 1129,
+      "change": 0.56,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:13:00.663Z",
+      "price": 104.48,
+      "volume": 2366,
+      "change": 0.16,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:14:00.018Z",
+      "price": 104.99,
+      "volume": 1012,
+      "change": 0.48,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:15:00.411Z",
+      "price": 105.71,
+      "volume": 1330,
+      "change": 0.69,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:16:00.836Z",
+      "price": 106.09,
+      "volume": 1536,
+      "change": 0.36,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:17:00.192Z",
+      "price": 106.51,
+      "volume": 1747,
+      "change": 0.39,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:18:00.672Z",
+      "price": 106.83,
+      "volume": 1744,
+      "change": 0.3,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:19:00.068Z",
+      "price": 106.91,
+      "volume": 1722,
+      "change": 0.08,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:20:00.472Z",
+      "price": 107.23,
+      "volume": 1959,
+      "change": 0.3,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:21:00.830Z",
+      "price": 107.65,
+      "volume": 2711,
+      "change": 0.39,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:22:00.208Z",
+      "price": 108.18,
+      "volume": 1859,
+      "change": 0.49,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:23:00.554Z",
+      "price": 108.46,
+      "volume": 1858,
+      "change": 0.26,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:24:00.961Z",
+      "price": 108.77,
+      "volume": 1129,
+      "change": 0.29,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:25:00.327Z",
+      "price": 109.34,
+      "volume": 2154,
+      "change": 0.53,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:26:00.765Z",
+      "price": 109.62,
+      "volume": 2376,
+      "change": 0.25,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:27:00.156Z",
+      "price": 110.11,
+      "volume": 2757,
+      "change": 0.45,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T19:01:00.981Z",
+      "price": 110.62,
+      "volume": 1244,
+      "change": 0.46,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T19:02:00.310Z",
+      "price": 110.8,
+      "volume": 1324,
+      "change": 0.16,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T19:03:00.680Z",
+      "price": 110.98,
+      "volume": 1522,
+      "change": 0.16,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T19:04:00.059Z",
+      "price": 110.95,
+      "volume": 2536,
+      "change": -0.03,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T19:05:00.374Z",
+      "price": 111.35,
+      "volume": 2906,
+      "change": 0.36,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T19:06:00.781Z",
+      "price": 112.01,
+      "volume": 2434,
+      "change": 0.59,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T19:07:00.164Z",
+      "price": 112.44,
+      "volume": 429,
+      "change": 0.38,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:08:00.550Z",
+      "price": 112.93,
+      "volume": 429,
+      "change": 0.44,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:09:00.914Z",
+      "price": 113.5,
+      "volume": 429,
+      "change": 0.5,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:10:00.271Z",
+      "price": 113.79,
+      "volume": 429,
+      "change": 0.26,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:11:00.631Z",
+      "price": 114.25,
+      "volume": 429,
+      "change": 0.41,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:12:00.002Z",
+      "price": 114.37,
+      "volume": 429,
+      "change": 0.11,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:13:00.360Z",
+      "price": 114.07,
+      "volume": 429,
+      "change": -0.26,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:14:00.686Z",
+      "price": 113.54,
+      "volume": 429,
+      "change": -0.47,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:15:00.035Z",
+      "price": 113.75,
+      "volume": 429,
+      "change": 0.18,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:16:00.355Z",
+      "price": 114.16,
+      "volume": 429,
+      "change": 0.36,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:17:00.741Z",
+      "price": 114.5,
+      "volume": 429,
+      "change": 0.3,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:18:00.113Z",
+      "price": 114.39,
+      "volume": 429,
+      "change": -0.1,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:19:00.459Z",
+      "price": 114.8,
+      "volume": 429,
+      "change": 0.36,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:20:00.702Z",
+      "price": 114.81,
+      "volume": 429,
+      "change": 0.01,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:21:00.757Z",
+      "price": 114.91,
+      "volume": 429,
+      "change": 0.09,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:22:00.126Z",
+      "price": 114.36,
+      "volume": 429,
+      "change": -0.48,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:23:00.506Z",
+      "price": 114.3,
+      "volume": 429,
+      "change": -0.05,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:24:00.913Z",
+      "price": 114.82,
+      "volume": 429,
+      "change": 0.46,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:25:00.269Z",
+      "price": 115,
+      "volume": 429,
+      "change": 0.15,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:26:00.639Z",
+      "price": 115.18,
+      "volume": 429,
+      "change": 0.16,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:27:00.010Z",
+      "price": 115.52,
+      "volume": 429,
+      "change": 0.29,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:28:00.322Z",
+      "price": 115.59,
+      "volume": 429,
+      "change": 0.06,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:29:00.660Z",
+      "price": 115.58,
+      "volume": 429,
+      "change": -0.01,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:30:00.059Z",
+      "price": 115.95,
+      "volume": 429,
+      "change": 0.32,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:31:00.443Z",
+      "price": 115.39,
+      "volume": 429,
+      "change": -0.49,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:32:00.788Z",
+      "price": 115.78,
+      "volume": 429,
+      "change": 0.34,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:33:00.094Z",
+      "price": 115.44,
+      "volume": 429,
+      "change": -0.29,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:36:00.800Z",
+      "price": 115.76,
+      "volume": 429,
+      "change": 0.27,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:37:00.210Z",
+      "price": 115.6,
+      "volume": 429,
+      "change": -0.14,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:38:00.647Z",
+      "price": 115.82,
+      "volume": 429,
+      "change": 0.19,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:39:00.069Z",
+      "price": 116,
+      "volume": 429,
+      "change": 0.16,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:40:00.341Z",
+      "price": 116.17,
+      "volume": 429,
+      "change": 0.15,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:41:00.724Z",
+      "price": 116.34,
+      "volume": 429,
+      "change": 0.15,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:42:00.057Z",
+      "price": 116.54,
+      "volume": 429,
+      "change": 0.17,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:43:00.799Z",
+      "price": 117.06,
+      "volume": 429,
+      "change": 0.45,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:44:00.758Z",
+      "price": 117.58,
+      "volume": 429,
+      "change": 0.44,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:45:00.106Z",
+      "price": 117.41,
+      "volume": 429,
+      "change": -0.15,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:46:00.471Z",
+      "price": 117.63,
+      "volume": 429,
+      "change": 0.19,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:47:00.811Z",
+      "price": 118.32,
+      "volume": 429,
+      "change": 0.59,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:48:00.211Z",
+      "price": 118.4,
+      "volume": 429,
+      "change": 0.07,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:49:00.512Z",
+      "price": 119.04,
+      "volume": 429,
+      "change": 0.54,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:50:00.855Z",
+      "price": 119.52,
+      "volume": 429,
+      "change": 0.41,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:51:00.248Z",
+      "price": 119.35,
+      "volume": 429,
+      "change": -0.14,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:52:00.595Z",
+      "price": 119.33,
+      "volume": 429,
+      "change": -0.02,
+      "dataSource": "statistics"
+    }
+  ],
+  "CTD": [
+    {
+      "timestamp": "2025-08-28T17:51:00.800Z",
+      "price": 99.75,
+      "volume": 36828,
+      "change": -0.25
+    },
+    {
+      "timestamp": "2025-08-28T17:52:00.480Z",
+      "price": 99.87,
+      "volume": 36828,
+      "change": 0.12
+    },
+    {
+      "timestamp": "2025-08-28T17:53:00.997Z",
+      "price": 99.51,
+      "volume": 36828,
+      "change": -0.36,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T17:54:00.405Z",
+      "price": 99.08,
+      "volume": 36828,
+      "change": -0.43,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T17:55:00.952Z",
+      "price": 98.96,
+      "volume": 36828,
+      "change": -0.12,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T17:56:00.378Z",
+      "price": 99.45,
+      "volume": 36828,
+      "change": 0.49,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T17:57:00.070Z",
+      "price": 99.42,
+      "volume": 36828,
+      "change": -0.03,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T17:58:00.492Z",
+      "price": 98.97,
+      "volume": 36828,
+      "change": -0.45,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T17:59:00.902Z",
+      "price": 99.31,
+      "volume": 36828,
+      "change": 0.34,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T18:00:00.281Z",
+      "price": 99.01,
+      "volume": 36828,
+      "change": -0.31,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T18:01:00.235Z",
+      "price": 99.5,
+      "volume": 2202,
+      "change": 0.5,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:02:00.310Z",
+      "price": 99.95,
+      "volume": 2341,
+      "change": 0.45,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:03:00.723Z",
+      "price": 100.53,
+      "volume": 1573,
+      "change": 0.58,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:04:00.343Z",
+      "price": 100.99,
+      "volume": 2063,
+      "change": 0.46,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:05:00.746Z",
+      "price": 101.34,
+      "volume": 2775,
+      "change": 0.34,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:06:00.243Z",
+      "price": 101.53,
+      "volume": 2199,
+      "change": 0.18,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:07:00.666Z",
+      "price": 101.56,
+      "volume": 1962,
+      "change": 0.03,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:08:00.275Z",
+      "price": 101.59,
+      "volume": 1509,
+      "change": 0.03,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:09:00.362Z",
+      "price": 101.75,
+      "volume": 1193,
+      "change": 0.16,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:10:00.292Z",
+      "price": 102.26,
+      "volume": 1170,
+      "change": 0.51,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:11:00.758Z",
+      "price": 102.86,
+      "volume": 2918,
+      "change": 0.58,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:12:00.238Z",
+      "price": 103.03,
+      "volume": 2787,
+      "change": 0.17,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:13:00.663Z",
+      "price": 103.18,
+      "volume": 2625,
+      "change": 0.15,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:14:00.018Z",
+      "price": 103.7,
+      "volume": 1666,
+      "change": 0.5,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:15:00.411Z",
+      "price": 104.25,
+      "volume": 1488,
+      "change": 0.53,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:16:00.836Z",
+      "price": 104.69,
+      "volume": 1761,
+      "change": 0.42,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:17:00.192Z",
+      "price": 105.19,
+      "volume": 2953,
+      "change": 0.48,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:18:00.672Z",
+      "price": 105.96,
+      "volume": 2684,
+      "change": 0.73,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:19:00.068Z",
+      "price": 106.14,
+      "volume": 2794,
+      "change": 0.17,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:20:00.472Z",
+      "price": 106.31,
+      "volume": 1922,
+      "change": 0.16,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:21:00.830Z",
+      "price": 106.62,
+      "volume": 1059,
+      "change": 0.29,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:22:00.208Z",
+      "price": 106.92,
+      "volume": 1847,
+      "change": 0.28,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:23:00.554Z",
+      "price": 107.38,
+      "volume": 2995,
+      "change": 0.43,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:24:00.961Z",
+      "price": 107.96,
+      "volume": 2603,
+      "change": 0.54,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:25:00.327Z",
+      "price": 108.01,
+      "volume": 1820,
+      "change": 0.05,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:26:00.765Z",
+      "price": 108.21,
+      "volume": 2989,
+      "change": 0.18,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:27:00.156Z",
+      "price": 108.64,
+      "volume": 1345,
+      "change": 0.39,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T19:01:00.981Z",
+      "price": 108.7,
+      "volume": 47765,
+      "change": 0.05,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:02:00.310Z",
+      "price": 108.5,
+      "volume": 47765,
+      "change": -0.18,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:03:00.680Z",
+      "price": 108.32,
+      "volume": 47765,
+      "change": -0.17,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:04:00.059Z",
+      "price": 107.8,
+      "volume": 47765,
+      "change": -0.48,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:05:00.374Z",
+      "price": 108.02,
+      "volume": 47765,
+      "change": 0.2,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:06:00.781Z",
+      "price": 108.56,
+      "volume": 47765,
+      "change": 0.5,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:07:00.164Z",
+      "price": 108.94,
+      "volume": 48194,
+      "change": 0.35,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:08:00.550Z",
+      "price": 109.17,
+      "volume": 48194,
+      "change": 0.21,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:09:00.914Z",
+      "price": 109.11,
+      "volume": 48194,
+      "change": -0.05,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:10:00.271Z",
+      "price": 108.75,
+      "volume": 48194,
+      "change": -0.33,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:11:00.631Z",
+      "price": 109.03,
+      "volume": 48194,
+      "change": 0.26,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:12:00.002Z",
+      "price": 109.27,
+      "volume": 48194,
+      "change": 0.22,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:13:00.360Z",
+      "price": 109,
+      "volume": 48194,
+      "change": -0.25,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:14:00.686Z",
+      "price": 108.61,
+      "volume": 48194,
+      "change": -0.35,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:15:00.035Z",
+      "price": 108.45,
+      "volume": 48194,
+      "change": -0.15,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:16:00.355Z",
+      "price": 107.95,
+      "volume": 48194,
+      "change": -0.46,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:17:00.741Z",
+      "price": 108.35,
+      "volume": 48194,
+      "change": 0.37,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:18:00.113Z",
+      "price": 108.46,
+      "volume": 48194,
+      "change": 0.1,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:19:00.459Z",
+      "price": 108.43,
+      "volume": 48194,
+      "change": -0.03,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:20:00.702Z",
+      "price": 108.59,
+      "volume": 48194,
+      "change": 0.15,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:21:00.757Z",
+      "price": 108.13,
+      "volume": 48194,
+      "change": -0.43,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:22:00.126Z",
+      "price": 107.94,
+      "volume": 48194,
+      "change": -0.17,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:23:00.506Z",
+      "price": 108.48,
+      "volume": 48194,
+      "change": 0.5,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:24:00.913Z",
+      "price": 108.93,
+      "volume": 48194,
+      "change": 0.42,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:25:00.269Z",
+      "price": 108.44,
+      "volume": 48194,
+      "change": -0.45,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:26:00.639Z",
+      "price": 108.95,
+      "volume": 48194,
+      "change": 0.47,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:27:00.010Z",
+      "price": 108.48,
+      "volume": 48194,
+      "change": -0.43,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:28:00.322Z",
+      "price": 108.62,
+      "volume": 48194,
+      "change": 0.13,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:29:00.660Z",
+      "price": 108.81,
+      "volume": 48194,
+      "change": 0.17,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:30:00.059Z",
+      "price": 109.32,
+      "volume": 48194,
+      "change": 0.47,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:31:00.443Z",
+      "price": 109.37,
+      "volume": 48194,
+      "change": 0.04,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:32:00.788Z",
+      "price": 109.27,
+      "volume": 48194,
+      "change": -0.09,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:33:00.094Z",
+      "price": 108.83,
+      "volume": 48194,
+      "change": -0.4,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:36:00.800Z",
+      "price": 108.84,
+      "volume": 48194,
+      "change": 0.01,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:37:00.210Z",
+      "price": 109.12,
+      "volume": 48194,
+      "change": 0.26,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:38:00.647Z",
+      "price": 109.3,
+      "volume": 48194,
+      "change": 0.16,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:39:00.069Z",
+      "price": 109.28,
+      "volume": 48194,
+      "change": -0.02,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:40:00.341Z",
+      "price": 109.01,
+      "volume": 48194,
+      "change": -0.24,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:41:00.724Z",
+      "price": 108.63,
+      "volume": 48194,
+      "change": -0.35,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:42:00.057Z",
+      "price": 108.53,
+      "volume": 48194,
+      "change": -0.09,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:43:00.799Z",
+      "price": 108.62,
+      "volume": 48194,
+      "change": 0.08,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:44:00.758Z",
+      "price": 108.82,
+      "volume": 48194,
+      "change": 0.18,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:45:00.106Z",
+      "price": 109.14,
+      "volume": 48194,
+      "change": 0.29,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:46:00.471Z",
+      "price": 109.24,
+      "volume": 48194,
+      "change": 0.09,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:47:00.811Z",
+      "price": 109.93,
+      "volume": 48194,
+      "change": 0.63,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:48:00.211Z",
+      "price": 110.45,
+      "volume": 48194,
+      "change": 0.48,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:49:00.512Z",
+      "price": 110.99,
+      "volume": 48194,
+      "change": 0.49,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:50:00.855Z",
+      "price": 111.59,
+      "volume": 48194,
+      "change": 0.54,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:51:00.248Z",
+      "price": 112.22,
+      "volume": 48194,
+      "change": 0.56,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:52:00.595Z",
+      "price": 112.31,
+      "volume": 48194,
+      "change": 0.08,
+      "dataSource": "statistics"
+    }
+  ],
+  "KPT": [
+    {
+      "timestamp": "2025-08-28T17:51:00.800Z",
+      "price": 99.69,
+      "volume": 54,
+      "change": -0.31
+    },
+    {
+      "timestamp": "2025-08-28T17:52:00.480Z",
+      "price": 100.1,
+      "volume": 54,
+      "change": 0.41
+    },
+    {
+      "timestamp": "2025-08-28T17:53:00.997Z",
+      "price": 99.8,
+      "volume": 54,
+      "change": -0.3,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T17:54:00.405Z",
+      "price": 100.11,
+      "volume": 54,
+      "change": 0.31,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T17:55:00.952Z",
+      "price": 99.91,
+      "volume": 54,
+      "change": -0.2,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T17:56:00.378Z",
+      "price": 99.52,
+      "volume": 54,
+      "change": -0.39,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T17:57:00.070Z",
+      "price": 99.56,
+      "volume": 54,
+      "change": 0.04,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T17:58:00.492Z",
+      "price": 99.24,
+      "volume": 54,
+      "change": -0.33,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T17:59:00.902Z",
+      "price": 99.33,
+      "volume": 54,
+      "change": 0.09,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T18:00:00.281Z",
+      "price": 99.59,
+      "volume": 54,
+      "change": 0.26,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T18:01:00.235Z",
+      "price": 100.42,
+      "volume": 2019,
+      "change": 0.84,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:02:00.310Z",
+      "price": 100.72,
+      "volume": 1541,
+      "change": 0.3,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:03:00.723Z",
+      "price": 100.8,
+      "volume": 1309,
+      "change": 0.08,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:04:00.343Z",
+      "price": 100.8,
+      "volume": 1098,
+      "change": 0,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:05:00.746Z",
+      "price": 101.23,
+      "volume": 1102,
+      "change": 0.42,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:06:00.243Z",
+      "price": 101.83,
+      "volume": 1769,
+      "change": 0.6,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:07:00.666Z",
+      "price": 101.9,
+      "volume": 2689,
+      "change": 0.07,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:08:00.275Z",
+      "price": 102.37,
+      "volume": 1197,
+      "change": 0.46,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:09:00.362Z",
+      "price": 102.42,
+      "volume": 1383,
+      "change": 0.05,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:10:00.292Z",
+      "price": 102.88,
+      "volume": 2327,
+      "change": 0.45,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:11:00.758Z",
+      "price": 103.3,
+      "volume": 2351,
+      "change": 0.4,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:12:00.238Z",
+      "price": 103.62,
+      "volume": 2854,
+      "change": 0.31,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:13:00.663Z",
+      "price": 103.71,
+      "volume": 1270,
+      "change": 0.09,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:14:00.018Z",
+      "price": 104.26,
+      "volume": 1863,
+      "change": 0.53,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:15:00.411Z",
+      "price": 104.33,
+      "volume": 2424,
+      "change": 0.07,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:16:00.836Z",
+      "price": 104.57,
+      "volume": 1337,
+      "change": 0.23,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:17:00.192Z",
+      "price": 104.75,
+      "volume": 1272,
+      "change": 0.18,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:18:00.672Z",
+      "price": 104.82,
+      "volume": 2657,
+      "change": 0.07,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:19:00.068Z",
+      "price": 104.94,
+      "volume": 1191,
+      "change": 0.12,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:20:00.472Z",
+      "price": 105.34,
+      "volume": 2994,
+      "change": 0.38,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:21:00.830Z",
+      "price": 105.86,
+      "volume": 2079,
+      "change": 0.49,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:22:00.208Z",
+      "price": 106.1,
+      "volume": 2559,
+      "change": 0.23,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:23:00.554Z",
+      "price": 106.82,
+      "volume": 1294,
+      "change": 0.68,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:24:00.961Z",
+      "price": 107.04,
+      "volume": 2572,
+      "change": 0.2,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:25:00.327Z",
+      "price": 107.67,
+      "volume": 2482,
+      "change": 0.59,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:26:00.765Z",
+      "price": 108.33,
+      "volume": 1187,
+      "change": 0.61,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:27:00.156Z",
+      "price": 108.75,
+      "volume": 1943,
+      "change": 0.39,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T19:01:00.981Z",
+      "price": 109.06,
+      "volume": 2590,
+      "change": 0.29,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T19:02:00.310Z",
+      "price": 109.6,
+      "volume": 2177,
+      "change": 0.49,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T19:03:00.680Z",
+      "price": 109.73,
+      "volume": 2324,
+      "change": 0.12,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T19:04:00.059Z",
+      "price": 109.9,
+      "volume": 1655,
+      "change": 0.16,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T19:05:00.374Z",
+      "price": 110.27,
+      "volume": 1233,
+      "change": 0.33,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T19:06:00.781Z",
+      "price": 110.56,
+      "volume": 2346,
+      "change": 0.26,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T19:07:00.164Z",
+      "price": 110.21,
+      "volume": 429,
+      "change": -0.31,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:08:00.550Z",
+      "price": 109.97,
+      "volume": 429,
+      "change": -0.21,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:09:00.914Z",
+      "price": 109.8,
+      "volume": 429,
+      "change": -0.15,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:10:00.271Z",
+      "price": 109.65,
+      "volume": 429,
+      "change": -0.14,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:11:00.631Z",
+      "price": 109.96,
+      "volume": 429,
+      "change": 0.29,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:12:00.002Z",
+      "price": 109.61,
+      "volume": 429,
+      "change": -0.32,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:13:00.360Z",
+      "price": 109.43,
+      "volume": 429,
+      "change": -0.16,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:14:00.686Z",
+      "price": 109.58,
+      "volume": 429,
+      "change": 0.14,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:15:00.035Z",
+      "price": 109.74,
+      "volume": 429,
+      "change": 0.15,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:16:00.355Z",
+      "price": 109.21,
+      "volume": 429,
+      "change": -0.49,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:17:00.741Z",
+      "price": 108.97,
+      "volume": 429,
+      "change": -0.22,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:18:00.113Z",
+      "price": 108.72,
+      "volume": 429,
+      "change": -0.23,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:19:00.459Z",
+      "price": 108.75,
+      "volume": 429,
+      "change": 0.03,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:20:00.702Z",
+      "price": 108.98,
+      "volume": 429,
+      "change": 0.22,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:21:00.757Z",
+      "price": 109.48,
+      "volume": 429,
+      "change": 0.46,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:22:00.126Z",
+      "price": 109.43,
+      "volume": 429,
+      "change": -0.04,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:23:00.506Z",
+      "price": 109,
+      "volume": 429,
+      "change": -0.4,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:24:00.913Z",
+      "price": 108.54,
+      "volume": 429,
+      "change": -0.42,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:25:00.269Z",
+      "price": 108.82,
+      "volume": 429,
+      "change": 0.26,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:26:00.639Z",
+      "price": 108.3,
+      "volume": 429,
+      "change": -0.48,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:27:00.010Z",
+      "price": 108.78,
+      "volume": 429,
+      "change": 0.44,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:28:00.322Z",
+      "price": 108.55,
+      "volume": 429,
+      "change": -0.21,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:29:00.660Z",
+      "price": 108.7,
+      "volume": 429,
+      "change": 0.14,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:30:00.059Z",
+      "price": 108.27,
+      "volume": 429,
+      "change": -0.4,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:31:00.443Z",
+      "price": 108.42,
+      "volume": 429,
+      "change": 0.14,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:32:00.788Z",
+      "price": 108.25,
+      "volume": 429,
+      "change": -0.15,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:33:00.094Z",
+      "price": 108.49,
+      "volume": 429,
+      "change": 0.22,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:36:00.800Z",
+      "price": 108.61,
+      "volume": 429,
+      "change": 0.11,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:37:00.210Z",
+      "price": 108.94,
+      "volume": 429,
+      "change": 0.3,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:38:00.647Z",
+      "price": 108.52,
+      "volume": 429,
+      "change": -0.39,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:39:00.069Z",
+      "price": 108.1,
+      "volume": 429,
+      "change": -0.39,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:40:00.341Z",
+      "price": 108.6,
+      "volume": 429,
+      "change": 0.46,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:41:00.724Z",
+      "price": 108.63,
+      "volume": 429,
+      "change": 0.03,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:42:00.057Z",
+      "price": 108.48,
+      "volume": 429,
+      "change": -0.14,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:43:00.799Z",
+      "price": 109.04,
+      "volume": 429,
+      "change": 0.52,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:44:00.758Z",
+      "price": 108.73,
+      "volume": 429,
+      "change": -0.29,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:45:00.106Z",
+      "price": 109.12,
+      "volume": 429,
+      "change": 0.36,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:46:00.471Z",
+      "price": 108.91,
+      "volume": 429,
+      "change": -0.19,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:47:00.811Z",
+      "price": 109.03,
+      "volume": 429,
+      "change": 0.11,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:48:00.211Z",
+      "price": 109.62,
+      "volume": 429,
+      "change": 0.54,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:49:00.512Z",
+      "price": 109.75,
+      "volume": 429,
+      "change": 0.12,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:50:00.855Z",
+      "price": 110.18,
+      "volume": 429,
+      "change": 0.39,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:51:00.248Z",
+      "price": 110.59,
+      "volume": 429,
+      "change": 0.37,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:52:00.595Z",
+      "price": 110.54,
+      "volume": 429,
+      "change": -0.05,
+      "dataSource": "statistics"
+    }
+  ],
+  "SPY": [
+    {
+      "timestamp": "2025-08-28T17:51:00.800Z",
+      "price": 100.32,
+      "volume": 30470,
+      "change": 0.32
+    },
+    {
+      "timestamp": "2025-08-28T17:52:00.480Z",
+      "price": 100.8,
+      "volume": 30470,
+      "change": 0.48
+    },
+    {
+      "timestamp": "2025-08-28T17:53:00.997Z",
+      "price": 101.1,
+      "volume": 30470,
+      "change": 0.3,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T17:54:00.405Z",
+      "price": 101.48,
+      "volume": 30470,
+      "change": 0.37,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T17:55:00.952Z",
+      "price": 101.07,
+      "volume": 30470,
+      "change": -0.41,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T17:56:00.378Z",
+      "price": 101.44,
+      "volume": 30470,
+      "change": 0.37,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T17:57:00.070Z",
+      "price": 101.39,
+      "volume": 30470,
+      "change": -0.05,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T17:58:00.492Z",
+      "price": 101.68,
+      "volume": 30470,
+      "change": 0.28,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T17:59:00.902Z",
+      "price": 101.64,
+      "volume": 30470,
+      "change": -0.03,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T18:00:00.281Z",
+      "price": 101.4,
+      "volume": 30470,
+      "change": -0.23,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T18:01:00.235Z",
+      "price": 102.04,
+      "volume": 1924,
+      "change": 0.63,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:02:00.310Z",
+      "price": 102.12,
+      "volume": 1993,
+      "change": 0.08,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:03:00.723Z",
+      "price": 102.2,
+      "volume": 1007,
+      "change": 0.08,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:04:00.343Z",
+      "price": 102.71,
+      "volume": 1280,
+      "change": 0.5,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:05:00.746Z",
+      "price": 102.99,
+      "volume": 1085,
+      "change": 0.28,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:06:00.243Z",
+      "price": 103.46,
+      "volume": 1782,
+      "change": 0.46,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:07:00.666Z",
+      "price": 103.47,
+      "volume": 1263,
+      "change": 0.01,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:08:00.275Z",
+      "price": 104.12,
+      "volume": 1812,
+      "change": 0.63,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:09:00.362Z",
+      "price": 104.4,
+      "volume": 1251,
+      "change": 0.27,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:10:00.292Z",
+      "price": 104.86,
+      "volume": 2317,
+      "change": 0.44,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:11:00.758Z",
+      "price": 105.2,
+      "volume": 1668,
+      "change": 0.32,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:12:00.238Z",
+      "price": 105.5,
+      "volume": 2222,
+      "change": 0.29,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:13:00.663Z",
+      "price": 105.4,
+      "volume": 1922,
+      "change": -0.1,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:14:00.018Z",
+      "price": 105.89,
+      "volume": 1343,
+      "change": 0.46,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:15:00.411Z",
+      "price": 106.56,
+      "volume": 2536,
+      "change": 0.63,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:16:00.836Z",
+      "price": 107.17,
+      "volume": 2821,
+      "change": 0.58,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:17:00.192Z",
+      "price": 107.23,
+      "volume": 1170,
+      "change": 0.06,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:18:00.672Z",
+      "price": 108.03,
+      "volume": 2380,
+      "change": 0.74,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:19:00.068Z",
+      "price": 108.11,
+      "volume": 1540,
+      "change": 0.08,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:20:00.472Z",
+      "price": 108.71,
+      "volume": 1044,
+      "change": 0.56,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:21:00.830Z",
+      "price": 108.91,
+      "volume": 1581,
+      "change": 0.18,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:22:00.208Z",
+      "price": 109.34,
+      "volume": 2726,
+      "change": 0.4,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:23:00.554Z",
+      "price": 109.76,
+      "volume": 1362,
+      "change": 0.38,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:24:00.961Z",
+      "price": 110.45,
+      "volume": 1228,
+      "change": 0.63,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:25:00.327Z",
+      "price": 110.99,
+      "volume": 1717,
+      "change": 0.49,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:26:00.765Z",
+      "price": 111.75,
+      "volume": 1525,
+      "change": 0.69,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:27:00.156Z",
+      "price": 111.93,
+      "volume": 2125,
+      "change": 0.16,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T19:01:00.981Z",
+      "price": 112.1,
+      "volume": 33083,
+      "change": 0.15,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:02:00.310Z",
+      "price": 112.39,
+      "volume": 33083,
+      "change": 0.26,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:03:00.680Z",
+      "price": 112.52,
+      "volume": 33083,
+      "change": 0.12,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:04:00.059Z",
+      "price": 112.28,
+      "volume": 33083,
+      "change": -0.22,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:05:00.374Z",
+      "price": 112.51,
+      "volume": 33083,
+      "change": 0.21,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:06:00.781Z",
+      "price": 112.9,
+      "volume": 33083,
+      "change": 0.35,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:07:00.164Z",
+      "price": 112.49,
+      "volume": 33083,
+      "change": -0.36,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:08:00.550Z",
+      "price": 112.91,
+      "volume": 33083,
+      "change": 0.37,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:09:00.914Z",
+      "price": 112.62,
+      "volume": 33083,
+      "change": -0.26,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:10:00.271Z",
+      "price": 112.63,
+      "volume": 33083,
+      "change": 0.01,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:11:00.631Z",
+      "price": 113.2,
+      "volume": 33083,
+      "change": 0.5,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:12:00.002Z",
+      "price": 112.72,
+      "volume": 33083,
+      "change": -0.42,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:13:00.360Z",
+      "price": 112.3,
+      "volume": 33083,
+      "change": -0.37,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:14:00.686Z",
+      "price": 112.44,
+      "volume": 33083,
+      "change": 0.12,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:15:00.035Z",
+      "price": 111.91,
+      "volume": 33083,
+      "change": -0.47,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:16:00.355Z",
+      "price": 112.18,
+      "volume": 33083,
+      "change": 0.25,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:17:00.741Z",
+      "price": 112.23,
+      "volume": 33083,
+      "change": 0.04,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:18:00.113Z",
+      "price": 112.41,
+      "volume": 33083,
+      "change": 0.16,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:19:00.459Z",
+      "price": 112.79,
+      "volume": 33083,
+      "change": 0.34,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:20:00.702Z",
+      "price": 113.29,
+      "volume": 33083,
+      "change": 0.44,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:21:00.757Z",
+      "price": 113.6,
+      "volume": 33083,
+      "change": 0.27,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:22:00.126Z",
+      "price": 113.56,
+      "volume": 33083,
+      "change": -0.03,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:23:00.506Z",
+      "price": 113.14,
+      "volume": 33083,
+      "change": -0.37,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:24:00.913Z",
+      "price": 113.18,
+      "volume": 33083,
+      "change": 0.03,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:25:00.269Z",
+      "price": 113.5,
+      "volume": 33083,
+      "change": 0.28,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:26:00.639Z",
+      "price": 113.48,
+      "volume": 33083,
+      "change": -0.02,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:27:00.010Z",
+      "price": 112.93,
+      "volume": 33083,
+      "change": -0.49,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:28:00.322Z",
+      "price": 113.07,
+      "volume": 33083,
+      "change": 0.13,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:29:00.660Z",
+      "price": 113.5,
+      "volume": 33083,
+      "change": 0.38,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:30:00.059Z",
+      "price": 112.95,
+      "volume": 33083,
+      "change": -0.49,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:31:00.443Z",
+      "price": 113.33,
+      "volume": 33083,
+      "change": 0.33,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:32:00.788Z",
+      "price": 113.89,
+      "volume": 33083,
+      "change": 0.5,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:33:00.094Z",
+      "price": 113.96,
+      "volume": 33083,
+      "change": 0.06,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:36:00.800Z",
+      "price": 114.11,
+      "volume": 33083,
+      "change": 0.13,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:37:00.210Z",
+      "price": 113.57,
+      "volume": 33083,
+      "change": -0.47,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:38:00.647Z",
+      "price": 113.8,
+      "volume": 33083,
+      "change": 0.2,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:39:00.069Z",
+      "price": 114.18,
+      "volume": 33083,
+      "change": 0.34,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:40:00.341Z",
+      "price": 113.7,
+      "volume": 33083,
+      "change": -0.42,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:41:00.724Z",
+      "price": 113.58,
+      "volume": 33083,
+      "change": -0.1,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:42:00.057Z",
+      "price": 114.09,
+      "volume": 33083,
+      "change": 0.45,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:43:00.799Z",
+      "price": 114.4,
+      "volume": 33083,
+      "change": 0.27,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:44:00.758Z",
+      "price": 114.75,
+      "volume": 33083,
+      "change": 0.31,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:45:00.106Z",
+      "price": 114.54,
+      "volume": 33083,
+      "change": -0.19,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:46:00.471Z",
+      "price": 114.86,
+      "volume": 33083,
+      "change": 0.28,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:47:00.811Z",
+      "price": 115.21,
+      "volume": 33083,
+      "change": 0.3,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:48:00.211Z",
+      "price": 115.52,
+      "volume": 33083,
+      "change": 0.27,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:49:00.512Z",
+      "price": 115.99,
+      "volume": 33083,
+      "change": 0.4,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:50:00.855Z",
+      "price": 116.37,
+      "volume": 33083,
+      "change": 0.32,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:51:00.248Z",
+      "price": 116.63,
+      "volume": 33083,
+      "change": 0.23,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:52:00.595Z",
+      "price": 117.16,
+      "volume": 33083,
+      "change": 0.46,
+      "dataSource": "statistics"
+    }
+  ],
+  "DRP": [
+    {
+      "timestamp": "2025-08-28T17:51:00.800Z",
+      "price": 99.57,
+      "volume": 438117,
+      "change": -0.43
+    },
+    {
+      "timestamp": "2025-08-28T17:52:00.480Z",
+      "price": 99.26,
+      "volume": 438117,
+      "change": -0.31
+    },
+    {
+      "timestamp": "2025-08-28T17:53:00.997Z",
+      "price": 99.41,
+      "volume": 438117,
+      "change": 0.15,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T17:54:00.405Z",
+      "price": 99.9,
+      "volume": 438117,
+      "change": 0.49,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T17:55:00.952Z",
+      "price": 99.83,
+      "volume": 438117,
+      "change": -0.07,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T17:56:00.378Z",
+      "price": 99.65,
+      "volume": 438117,
+      "change": -0.18,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T17:57:00.070Z",
+      "price": 99.9,
+      "volume": 438117,
+      "change": 0.25,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T17:58:00.492Z",
+      "price": 99.51,
+      "volume": 438117,
+      "change": -0.39,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T17:59:00.902Z",
+      "price": 99.32,
+      "volume": 438117,
+      "change": -0.2,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T18:00:00.281Z",
+      "price": 98.95,
+      "volume": 438117,
+      "change": -0.37,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T18:01:00.235Z",
+      "price": 99.57,
+      "volume": 2328,
+      "change": 0.63,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:02:00.310Z",
+      "price": 99.69,
+      "volume": 2598,
+      "change": 0.12,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:03:00.723Z",
+      "price": 100,
+      "volume": 2670,
+      "change": 0.31,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:04:00.343Z",
+      "price": 100.45,
+      "volume": 1609,
+      "change": 0.45,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:05:00.746Z",
+      "price": 100.89,
+      "volume": 1031,
+      "change": 0.44,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:06:00.243Z",
+      "price": 101.14,
+      "volume": 2375,
+      "change": 0.25,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:07:00.666Z",
+      "price": 101.55,
+      "volume": 1336,
+      "change": 0.4,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:08:00.275Z",
+      "price": 101.93,
+      "volume": 2927,
+      "change": 0.37,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:09:00.362Z",
+      "price": 102.33,
+      "volume": 1917,
+      "change": 0.39,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:10:00.292Z",
+      "price": 102.83,
+      "volume": 1823,
+      "change": 0.49,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:11:00.758Z",
+      "price": 102.86,
+      "volume": 2783,
+      "change": 0.03,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:12:00.238Z",
+      "price": 102.76,
+      "volume": 1194,
+      "change": -0.1,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:13:00.663Z",
+      "price": 102.99,
+      "volume": 2392,
+      "change": 0.22,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:14:00.018Z",
+      "price": 102.99,
+      "volume": 2403,
+      "change": 0,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:15:00.411Z",
+      "price": 103.49,
+      "volume": 1579,
+      "change": 0.49,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:16:00.836Z",
+      "price": 103.87,
+      "volume": 2753,
+      "change": 0.36,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:17:00.192Z",
+      "price": 104.34,
+      "volume": 2755,
+      "change": 0.45,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:18:00.672Z",
+      "price": 104.57,
+      "volume": 2408,
+      "change": 0.22,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:19:00.068Z",
+      "price": 105.38,
+      "volume": 2861,
+      "change": 0.78,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:20:00.472Z",
+      "price": 105.52,
+      "volume": 2932,
+      "change": 0.14,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:21:00.830Z",
+      "price": 105.88,
+      "volume": 1679,
+      "change": 0.34,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:22:00.208Z",
+      "price": 106.57,
+      "volume": 2529,
+      "change": 0.65,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:23:00.554Z",
+      "price": 107.05,
+      "volume": 1851,
+      "change": 0.45,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:24:00.961Z",
+      "price": 107.12,
+      "volume": 1306,
+      "change": 0.07,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:25:00.327Z",
+      "price": 107.12,
+      "volume": 1135,
+      "change": 0,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:26:00.765Z",
+      "price": 107.39,
+      "volume": 1888,
+      "change": 0.25,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T18:27:00.156Z",
+      "price": 107.85,
+      "volume": 1981,
+      "change": 0.43,
+      "dataSource": "generated"
+    },
+    {
+      "timestamp": "2025-08-28T19:01:00.981Z",
+      "price": 107.56,
+      "volume": 514018,
+      "change": -0.27,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:02:00.310Z",
+      "price": 107.52,
+      "volume": 514018,
+      "change": -0.04,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:03:00.680Z",
+      "price": 107.46,
+      "volume": 514018,
+      "change": -0.06,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:04:00.059Z",
+      "price": 107.51,
+      "volume": 514018,
+      "change": 0.05,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:05:00.374Z",
+      "price": 107.89,
+      "volume": 514018,
+      "change": 0.35,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:06:00.781Z",
+      "price": 108.21,
+      "volume": 514018,
+      "change": 0.3,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:07:00.164Z",
+      "price": 108.56,
+      "volume": 514018,
+      "change": 0.32,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:08:00.550Z",
+      "price": 108.19,
+      "volume": 514018,
+      "change": -0.34,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:09:00.914Z",
+      "price": 108.31,
+      "volume": 514018,
+      "change": 0.11,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:10:00.271Z",
+      "price": 108.73,
+      "volume": 514018,
+      "change": 0.38,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:11:00.631Z",
+      "price": 108.35,
+      "volume": 514018,
+      "change": -0.35,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:12:00.002Z",
+      "price": 107.91,
+      "volume": 514018,
+      "change": -0.41,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:13:00.360Z",
+      "price": 107.68,
+      "volume": 514018,
+      "change": -0.21,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:14:00.686Z",
+      "price": 107.31,
+      "volume": 514018,
+      "change": -0.35,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:15:00.035Z",
+      "price": 107.7,
+      "volume": 514018,
+      "change": 0.36,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:16:00.355Z",
+      "price": 107.61,
+      "volume": 514018,
+      "change": -0.09,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:17:00.741Z",
+      "price": 107.29,
+      "volume": 514018,
+      "change": -0.3,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:18:00.113Z",
+      "price": 107.62,
+      "volume": 514018,
+      "change": 0.31,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:19:00.459Z",
+      "price": 108.05,
+      "volume": 514018,
+      "change": 0.4,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:20:00.702Z",
+      "price": 107.9,
+      "volume": 514018,
+      "change": -0.14,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:21:00.757Z",
+      "price": 108.1,
+      "volume": 514018,
+      "change": 0.19,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:22:00.126Z",
+      "price": 107.79,
+      "volume": 514018,
+      "change": -0.29,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:23:00.506Z",
+      "price": 107.83,
+      "volume": 514018,
+      "change": 0.04,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:24:00.913Z",
+      "price": 107.33,
+      "volume": 514018,
+      "change": -0.47,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:25:00.269Z",
+      "price": 107.79,
+      "volume": 514018,
+      "change": 0.43,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:26:00.639Z",
+      "price": 108.24,
+      "volume": 514018,
+      "change": 0.42,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:27:00.010Z",
+      "price": 108.78,
+      "volume": 514018,
+      "change": 0.5,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:28:00.322Z",
+      "price": 108.54,
+      "volume": 514018,
+      "change": -0.22,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:29:00.660Z",
+      "price": 108.96,
+      "volume": 514018,
+      "change": 0.38,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:30:00.059Z",
+      "price": 108.87,
+      "volume": 514018,
+      "change": -0.08,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:31:00.443Z",
+      "price": 109.03,
+      "volume": 514018,
+      "change": 0.15,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:32:00.788Z",
+      "price": 108.98,
+      "volume": 514018,
+      "change": -0.05,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:33:00.094Z",
+      "price": 108.84,
+      "volume": 514018,
+      "change": -0.13,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:36:00.800Z",
+      "price": 109.15,
+      "volume": 514018,
+      "change": 0.29,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:37:00.210Z",
+      "price": 109.57,
+      "volume": 514018,
+      "change": 0.39,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:38:00.647Z",
+      "price": 109.48,
+      "volume": 514018,
+      "change": -0.08,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:39:00.069Z",
+      "price": 109.71,
+      "volume": 514018,
+      "change": 0.21,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:40:00.341Z",
+      "price": 109.6,
+      "volume": 514018,
+      "change": -0.1,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:41:00.724Z",
+      "price": 109.62,
+      "volume": 514018,
+      "change": 0.02,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:42:00.057Z",
+      "price": 109.77,
+      "volume": 514018,
+      "change": 0.14,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:43:00.799Z",
+      "price": 109.41,
+      "volume": 514018,
+      "change": -0.33,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:44:00.758Z",
+      "price": 109.43,
+      "volume": 514018,
+      "change": 0.02,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:45:00.106Z",
+      "price": 109.11,
+      "volume": 514018,
+      "change": -0.29,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:46:00.471Z",
+      "price": 109.57,
+      "volume": 514018,
+      "change": 0.42,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:47:00.811Z",
+      "price": 109.83,
+      "volume": 514018,
+      "change": 0.23,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:48:00.211Z",
+      "price": 109.75,
+      "volume": 514018,
+      "change": -0.07,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:49:00.512Z",
+      "price": 109.86,
+      "volume": 514018,
+      "change": 0.1,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:50:00.855Z",
+      "price": 109.82,
+      "volume": 514018,
+      "change": -0.03,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:51:00.248Z",
+      "price": 109.91,
+      "volume": 514018,
+      "change": 0.08,
+      "dataSource": "statistics"
+    },
+    {
+      "timestamp": "2025-08-28T19:52:00.595Z",
+      "price": 109.93,
+      "volume": 514018,
+      "change": 0.01,
+      "dataSource": "statistics"
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+[
+  {
+    "id": "cake",
+    "username": "cake",
+    "email": "samuel@mackayweed.com",
+    "password": "$2b$10$w4WhLJwaFZBlyuS/w1xYQuuK/sOvg7RLmT0x97VcewP3gEYJvkaGy",
+    "cash": 16.730000000000018,
+    "shares": {
+      "AZT": 2,
+      "SPY": 3
+    },
+    "holdings": [
+      {
+        "ticker": "AZT",
+        "shares": 1
+      },
+      {
+        "ticker": "SPY",
+        "shares": 3
+      }
+    ],
+    "netWorth": 466.49,
+    "createdAt": "2025-08-28T16:49:06.960Z"
+  }
+]

@@ -1,0 +1,54 @@
+{
+  "name": "azt-stock-exchange",
+  "version": "1.0.0",
+  "description": "AZT Stock Exchange Simulator - A semi-serious stock exchange simulator for Minecraft mod authors",
+  "main": "index.js",
+  "scripts": {
+    "install:all": "npm install && cd backend && npm install && cd ../frontend && npm install",
+    "start:backend": "cd backend && npm start",
+    "start:frontend": "cd frontend && npm start",
+    "dev:backend": "cd backend && npm run dev",
+    "dev:frontend": "cd frontend && npm start",
+    "build:frontend": "cd frontend && npm run build",
+    "build": "cd frontend && npm run build",
+    "start": "npm run build && cd backend && powershell -Command \"$env:NODE_ENV='production'; npm start\"",
+    "start:unix": "npm run build && cd backend && NODE_ENV=production npm start",
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "test:backend": "cd backend && npm test",
+    "test:frontend": "cd frontend && npm test",
+    "docker:build": "docker build -t azt-stock-exchange .",
+    "docker:run": "docker run -p 3001:3001 -v ./data:/app/data azt-stock-exchange",
+    "docker:compose": "docker-compose up -d",
+    "docker:down": "docker-compose down"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/azt-organisation/stock-exchange.git"
+  },
+  "keywords": [
+    "stock",
+    "simulator",
+    "minecraft",
+    "mods",
+    "trading",
+    "react",
+    "nodejs",
+    "express"
+  ],
+  "author": "AZT Organisation",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/azt-organisation/stock-exchange/issues"
+  },
+  "homepage": "https://github.com/azt-organisation/stock-exchange#readme",
+  "devDependencies": {
+    "concurrently": "^8.2.0"
+  },
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=7.0.0"
+  },
+  "dependencies": {
+    "tippy.js": "^6.3.7"
+  }
+}
