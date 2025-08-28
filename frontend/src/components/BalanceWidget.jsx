@@ -14,9 +14,13 @@ const BalanceWidget = memo(({ pendingTransactions = [] }) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      if (!user) return;
+      if (!user) {
+        setLoading(false);
+        return;
+      }
 
       try {
+        setLoading(true);
         const [userResponse, stocksResponse] = await Promise.all([
           stocksApi.getUserData(user.id),
           stocksApi.getAllStocks()
@@ -27,17 +31,30 @@ const BalanceWidget = memo(({ pendingTransactions = [] }) => {
 
         setUserData(userData);
 
-        // Calculate portfolio value
+        // Calculate portfolio value using holdings format
         let totalValue = 0;
-        Object.entries(userData.shares || {}).forEach(([ticker, shares]) => {
-          const stock = stocks.find(s => s.ticker === ticker);
-          if (stock && shares > 0) {
-            totalValue += stock.price * shares;
-          }
-        });
+        if (userData.holdings && userData.holdings.length > 0) {
+          // Use new holdings format
+          userData.holdings.forEach(holding => {
+            const stock = stocks.find(s => s.ticker === holding.ticker);
+            if (stock && holding.shares > 0) {
+              totalValue += stock.price * holding.shares;
+            }
+          });
+        } else if (userData.shares) {
+          // Fallback to old shares format
+          Object.entries(userData.shares).forEach(([ticker, shares]) => {
+            const stock = stocks.find(s => s.ticker === ticker);
+            if (stock && shares > 0) {
+              totalValue += stock.price * shares;
+            }
+          });
+        }
         setPortfolioValue(totalValue);
       } catch (error) {
         console.error('Failed to fetch balance data:', error);
+        setUserData(null);
+        setPortfolioValue(0);
       } finally {
         setLoading(false);
       }
@@ -62,35 +79,35 @@ const BalanceWidget = memo(({ pendingTransactions = [] }) => {
   const views = userData ? [
     // View 1: Cash Balance
     {
-      icon: <FaCoins className={isDarkMode ? 'text-yellow-400' : 'text-yellow-500'} />,
+      icon: <FaCoins className="text-yellow-500" />,
       label: 'Cash',
       value: `$${userData.cash.toFixed(2)}`,
       subValue: pendingCashChange !== 0 ? `${hasPositiveChange ? '+' : ''}$${pendingCashChange.toFixed(2)}` : null,
-      color: isDarkMode ? 'text-green-400' : 'text-green-600'
+      color: 'text-green-600'
     },
     // View 2: Portfolio Value
     {
-      icon: <FaChartLine className={isDarkMode ? 'text-blue-400' : 'text-blue-500'} />,
+      icon: <FaChartLine className="text-accent-foreground" />,
       label: 'Stocks',
       value: `$${portfolioValue.toFixed(2)}`,
       subValue: null,
-      color: isDarkMode ? 'text-blue-400' : 'text-blue-600'
+      color: 'text-accent-foreground'
     },
     // View 3: Total Wealth
     {
-      icon: <FaWallet className={isDarkMode ? 'text-purple-400' : 'text-purple-500'} />,
+      icon: <span className="text-purple-500 text-lg">🤑</span>,
       label: 'Total',
       value: `$${totalWealth.toFixed(2)}`,
       subValue: pendingCashChange !== 0 ? `→ $${(totalWealth + pendingCashChange).toFixed(2)}` : null,
-      color: isDarkMode ? 'text-white' : 'text-gray-900'
+      color: 'text-foreground'
     },
     // View 4: Pending Transactions (only if there are any)
     ...(pendingTransactions.length > 0 ? [{
-      icon: <FaClock className={isDarkMode ? 'text-orange-400' : 'text-orange-500'} />,
+      icon: <FaClock className="text-orange-500" />,
       label: 'Pending',
       value: `${pendingTransactions.length} transaction${pendingTransactions.length > 1 ? 's' : ''}`,
       subValue: null,
-      color: isDarkMode ? 'text-orange-400' : 'text-orange-600'
+      color: 'text-orange-600'
     }] : [])
   ] : [];
 
@@ -109,27 +126,37 @@ const BalanceWidget = memo(({ pendingTransactions = [] }) => {
 
   if (loading) {
     return (
-      <div className={`rounded-lg border px-4 py-2 shadow-sm w-44 ${isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'}`}>
+      <div className="rounded-xs border border-border shadow-sm w-44 bg-card p-4">
         <div className="animate-pulse h-8 flex items-center">
-          <div className={`h-3 rounded w-12 ${isDarkMode ? 'bg-gray-600' : 'bg-gray-200'}`}></div>
-          <div className={`ml-auto h-4 rounded w-16 ${isDarkMode ? 'bg-gray-600' : 'bg-gray-200'}`}></div>
+          <div className="h-3 rounded-xs w-12 bg-muted"></div>
+          <div className="ml-auto h-4 rounded-xs w-16 bg-muted"></div>
         </div>
       </div>
     );
   }
 
-  if (!userData) {
+  if (!user) {
     return (
-      <div className={`rounded-lg border px-4 py-2 shadow-sm w-44 ${isDarkMode ? 'bg-red-900/20 border-red-700' : 'bg-red-50 border-red-200'}`}>
-        <div className={`text-xs h-8 flex items-center ${isDarkMode ? 'text-red-400' : 'text-red-600'}`}>
-          Balance Error
+      <div className="rounded-xs border border-muted/20 shadow-sm w-44 bg-muted/10 p-4">
+        <div className="text-xs h-8 flex items-center text-muted-foreground">
+          Please log in to view balance
+        </div>
+      </div>
+    );
+  }
+
+  if (!userData && !loading) {
+    return (
+      <div className="rounded-xs border border-destructive/20 shadow-sm w-44 bg-destructive/10 p-4">
+        <div className="text-xs h-8 flex items-center text-destructive">
+          Unable to load balance data
         </div>
       </div>
     );
   }
 
   return (
-    <div className={`rounded-lg border px-4 py-2 shadow-sm w-44 overflow-hidden relative ${isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'}`}>
+    <div className="rounded-xs border border-border shadow-sm w-44 overflow-hidden relative bg-card p-4">
       <div className="relative h-8">
         {views.map((view, index) => (
           <div
@@ -144,7 +171,7 @@ const BalanceWidget = memo(({ pendingTransactions = [] }) => {
                 : 'opacity-0 transform translate-x-full'
             }`}
           >
-            <div className={`flex items-center text-xs ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+            <div className="flex items-center text-xs text-muted-foreground">
               {view.icon}
               <span className="ml-2">{view.label}</span>
             </div>
@@ -153,7 +180,7 @@ const BalanceWidget = memo(({ pendingTransactions = [] }) => {
                 {view.value}
               </div>
               {view.subValue && (
-                <div className={`text-xs smooth-update ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+                <div className="text-xs smooth-update text-muted-foreground">
                   {view.subValue}
                 </div>
               )}

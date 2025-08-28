@@ -100,6 +100,83 @@ async function writeJsonFile(filePath, data) {
   }
 }
 
+// Recalculate net worth for all users based on current stock prices
+async function recalculateAllUsersNetWorth() {
+  try {
+    const users = await readJsonFile(USERS_FILE, []);
+    const history = await readJsonFile(HISTORY_FILE, {});
+    const authors = await readJsonFile(AUTHORS_FILE, []);
+
+    let updatedCount = 0;
+
+    for (let i = 0; i < users.length; i++) {
+      const user = users[i];
+      let holdingsValue = 0;
+
+      // Calculate value of holdings
+      const holdings = user.holdings || [];
+      for (const holding of holdings) {
+        const stockHistory = history[holding.ticker] || [];
+
+        // Get latest price for this stock
+        let currentPrice = 100; // Default price
+        if (stockHistory.length > 0) {
+          // Find the last valid price
+          for (let j = stockHistory.length - 1; j >= 0; j--) {
+            const entry = stockHistory[j];
+            if (entry.price && !isNaN(entry.price) && isFinite(entry.price)) {
+              currentPrice = entry.price;
+              break;
+            }
+          }
+        }
+
+        holdingsValue += holding.shares * currentPrice;
+      }
+
+      // Also check legacy shares format
+      const shares = user.shares || {};
+      for (const [ticker, shareCount] of Object.entries(shares)) {
+        // Skip if already counted in holdings
+        const alreadyCounted = holdings.some(h => h.ticker === ticker);
+        if (alreadyCounted) continue;
+
+        const stockHistory = history[ticker] || [];
+        let currentPrice = 100; // Default price
+        if (stockHistory.length > 0) {
+          for (let j = stockHistory.length - 1; j >= 0; j--) {
+            const entry = stockHistory[j];
+            if (entry.price && !isNaN(entry.price) && isFinite(entry.price)) {
+              currentPrice = entry.price;
+              break;
+            }
+          }
+        }
+
+        holdingsValue += shareCount * currentPrice;
+      }
+
+      // Update net worth
+      const newNetWorth = parseFloat((user.cash + holdingsValue).toFixed(2));
+      if (user.netWorth !== newNetWorth) {
+        user.netWorth = newNetWorth;
+        updatedCount++;
+      }
+    }
+
+    // Save updated users if any changes were made
+    if (updatedCount > 0) {
+      await writeJsonFile(USERS_FILE, users);
+      console.log(`Updated net worth for ${updatedCount} users`);
+    }
+
+    return updatedCount;
+  } catch (error) {
+    console.error('Error recalculating net worth:', error);
+    return 0;
+  }
+}
+
 // Server-side data aggregation function
 function aggregateHistoryData(data, granularity) {
   if (!data.length || granularity === 'minute') return data;
@@ -783,11 +860,38 @@ app.get('/api/user/:userId', authenticateToken, async (req, res) => {
       return res.status(404).json({ error: 'User not found' });
     }
     
+    // Migrate old shares format to holdings if needed and consolidate
+    if (user.shares && Object.keys(user.shares).length > 0) {
+      // Initialize holdings if it doesn't exist
+      if (!user.holdings) {
+        user.holdings = [];
+      }
+      
+      // Consolidate shares into holdings
+      for (const [ticker, shareCount] of Object.entries(user.shares)) {
+        const existingHolding = user.holdings.find(h => h.ticker === ticker);
+        if (existingHolding) {
+          // Add shares from old format to existing holding
+          existingHolding.shares += parseInt(shareCount);
+        } else {
+          // Create new holding
+          user.holdings.push({ ticker, shares: parseInt(shareCount) });
+        }
+      }
+      
+      // Clear old shares format after migration
+      user.shares = {};
+      
+      // Save migrated data
+      await writeJsonFile(USERS_FILE, users);
+    }
+    
     res.json({
       id: user.id,
       username: user.username,
       cash: user.cash,
-      shares: user.shares || {},
+      shares: user.shares || {}, // Keep for backward compatibility
+      holdings: user.holdings || [], // New format
       netWorth: user.netWorth
     });
   } catch (error) {
@@ -844,6 +948,27 @@ app.post('/api/buy', authenticateToken, async (req, res) => {
     }
     
     user.shares[ticker] = (user.shares[ticker] || 0) + quantity;
+    
+    // Recalculate net worth using current market prices
+    let holdingsValue = 0;
+    for (const [stockTicker, shareCount] of Object.entries(user.shares)) {
+      const stockHistory = history[stockTicker] || [];
+      let currentPrice = 100; // Default price
+      
+      if (stockHistory.length > 0) {
+        for (let i = stockHistory.length - 1; i >= 0; i--) {
+          const entry = stockHistory[i];
+          if (entry.price && !isNaN(entry.price) && isFinite(entry.price)) {
+            currentPrice = entry.price;
+            break;
+          }
+        }
+      }
+      
+      holdingsValue += shareCount * currentPrice;
+    }
+    
+    user.netWorth = parseFloat((user.cash + holdingsValue).toFixed(2));
     
     // Update user data
     users[userIndex] = user;
@@ -915,6 +1040,27 @@ app.post('/api/sell', authenticateToken, async (req, res) => {
     if (user.shares[ticker] === 0) {
       delete user.shares[ticker];
     }
+    
+    // Recalculate net worth using current market prices
+    let holdingsValue = 0;
+    for (const [stockTicker, shareCount] of Object.entries(user.shares)) {
+      const stockHistory = history[stockTicker] || [];
+      let currentPrice = 100; // Default price
+      
+      if (stockHistory.length > 0) {
+        for (let i = stockHistory.length - 1; i >= 0; i--) {
+          const entry = stockHistory[i];
+          if (entry.price && !isNaN(entry.price) && isFinite(entry.price)) {
+            currentPrice = entry.price;
+            break;
+          }
+        }
+      }
+      
+      holdingsValue += shareCount * currentPrice;
+    }
+    
+    user.netWorth = parseFloat((user.cash + holdingsValue).toFixed(2));
     
     // Update user data
     users[userIndex] = user;
@@ -1053,10 +1199,29 @@ app.post('/api/users/:id/portfolio', authenticateToken, async (req, res) => {
       }
     }
     
-    // Recalculate net worth (simplified - would need current prices in real implementation)
-    user.netWorth = user.cash + user.holdings.reduce((total, holding) => {
-      return total + (holding.shares * price); // Using transaction price as approximation
-    }, 0);
+    // Recalculate net worth using current market prices
+    const history = await readJsonFile(HISTORY_FILE, {});
+    let holdingsValue = 0;
+    
+    for (const holding of user.holdings) {
+      const stockHistory = history[holding.ticker] || [];
+      let currentPrice = 100; // Default price
+      
+      if (stockHistory.length > 0) {
+        // Find the last valid price
+        for (let i = stockHistory.length - 1; i >= 0; i--) {
+          const entry = stockHistory[i];
+          if (entry.price && !isNaN(entry.price) && isFinite(entry.price)) {
+            currentPrice = entry.price;
+            break;
+          }
+        }
+      }
+      
+      holdingsValue += holding.shares * currentPrice;
+    }
+    
+    user.netWorth = parseFloat((user.cash + holdingsValue).toFixed(2));
     
     users[userIndex] = user;
     await writeJsonFile(USERS_FILE, users);
@@ -1579,13 +1744,50 @@ cron.schedule('* * * * *', async () => {
     }
     
     await writeJsonFile(HISTORY_FILE, history);
+    
+    // Recalculate net worth for all users based on updated prices
+    await recalculateAllUsersNetWorth();
+    
     // console.log('Enhanced market simulation completed');
   } catch (error) {
     console.error('Error in market simulation:', error);
   }
 });
 
-// GET /api/downloads/status - Get downloads and data generation status
+// GET /api/active-traders - Get count of active traders
+app.get('/api/active-traders', async (req, res) => {
+  try {
+    const users = await readJsonFile(USERS_FILE, []);
+
+    // Define active traders as users who have holdings or shares
+    const activeTraders = users.filter(user => {
+      // Check if user has holdings
+      const hasHoldings = user.holdings && user.holdings.length > 0;
+
+      // Check if user has shares (legacy format)
+      const hasShares = user.shares && Object.keys(user.shares).length > 0;
+
+      // Check if user has made recent transactions (if we had transaction history)
+      // For now, we'll consider users with holdings/shares as active
+
+      return hasHoldings || hasShares;
+    });
+
+    res.json({
+      count: activeTraders.length,
+      totalUsers: users.length,
+      activeUsers: activeTraders.map(user => ({
+        id: user.id,
+        username: user.username,
+        hasHoldings: user.holdings && user.holdings.length > 0,
+        hasShares: user.shares && Object.keys(user.shares).length > 0
+      }))
+    });
+  } catch (error) {
+    console.error('Error fetching active traders count:', error);
+    res.status(500).json({ error: 'Failed to fetch active traders count' });
+  }
+});
 app.get('/api/downloads/status', async (req, res) => {
   try {
     const authors = await readJsonFile(AUTHORS_FILE, []);

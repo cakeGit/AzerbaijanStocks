@@ -3,6 +3,8 @@ import { usePortfolio, useStocks, usePortfolioHistory } from '../hooks/useApi';
 import { formatCurrency, formatNumber } from '../utils/formatting';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { useAuth } from '../contexts/AuthContext';
+import Tippy from '@tippyjs/react';
+import 'tippy.js/dist/tippy.css';
 
 const Portfolio = () => {
   const { user } = useAuth();
@@ -34,12 +36,12 @@ const Portfolio = () => {
     return (
       <div className="space-y-8">
         <div className="animate-pulse">
-          <div className="h-8 bg-gray-300 rounded w-1/4 mb-4"></div>
+          <div className="h-8 bg-muted rounded-xs w-1/4 mb-4"></div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[...Array(3)].map((_, i) => (
-              <div key={i} className="bg-white rounded-lg shadow p-6">
-                <div className="h-4 bg-gray-300 rounded mb-2"></div>
-                <div className="h-8 bg-gray-300 rounded"></div>
+              <div key={i} className="bg-card rounded-xs shadow-sm p-6 border border-border">
+                <div className="h-4 bg-muted rounded-xs mb-2"></div>
+                <div className="h-8 bg-muted rounded-xs"></div>
               </div>
             ))}
           </div>
@@ -51,13 +53,13 @@ const Portfolio = () => {
   if (error || !portfolio) {
     return (
       <div className="text-center py-12">
-        <div className="text-red-600 mb-4">
+        <div className="text-destructive mb-4">
           <h2 className="text-xl font-semibold">Error Loading Portfolio</h2>
           <p>{error || 'Portfolio not found'}</p>
         </div>
         <button
           onClick={() => window.location.reload()}
-          className="bg-azt-blue text-white px-4 py-2 rounded-md hover:bg-blue-700"
+          className="bg-primary text-primary-foreground px-4 py-2 rounded-xs hover:bg-primary/90 transition-colors"
         >
           Retry
         </button>
@@ -86,48 +88,48 @@ const Portfolio = () => {
   return (
     <div className="space-y-8">
       <div>
-        <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-2">
+        <h1 className="text-3xl font-bold text-foreground mb-2">
           Portfolio - {portfolio.username}
         </h1>
-        <p className="text-gray-600 dark:text-gray-400">
+        <p className="text-muted-foreground">
           Track your investments and performance.
         </p>
       </div>
 
       {/* Summary Cards */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+        <div className="bg-card rounded-xs shadow-sm p-6 border border-border">
           <div className="text-center">
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-2">Total Value</h3>
-            <p className="text-3xl font-bold text-azt-blue">
+            <h3 className="text-lg font-semibold text-foreground mb-2">Total Value</h3>
+            <p className="text-3xl font-bold text-primary">
               {formatCurrency(totalValue)}
             </p>
           </div>
         </div>
 
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+        <div className="bg-card rounded-xs shadow-sm p-6 border border-border">
           <div className="text-center">
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-2">Cash</h3>
-            <p className="text-2xl font-bold text-gray-900 dark:text-gray-100">
+            <h3 className="text-lg font-semibold text-foreground mb-2">Cash</h3>
+            <p className="text-2xl font-bold text-foreground">
               {formatCurrency(portfolio.cash)}
             </p>
           </div>
         </div>
 
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+        <div className="bg-card rounded-xs shadow-sm p-6 border border-border">
           <div className="text-center">
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-2">Holdings Value</h3>
-            <p className="text-2xl font-bold text-gray-900 dark:text-gray-100">
+            <h3 className="text-lg font-semibold text-foreground mb-2">Holdings Value</h3>
+            <p className="text-2xl font-bold text-foreground">
               {formatCurrency(holdingsValue)}
             </p>
           </div>
         </div>
 
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+        <div className="bg-card rounded-xs shadow-sm p-6 border border-border">
           <div className="text-center">
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-2">Total P&L</h3>
+            <h3 className="text-lg font-semibold text-foreground mb-2">Total P&L</h3>
             <p className={`text-2xl font-bold ${
-              totalGainLoss >= 0 ? 'text-azt-green' : 'text-azt-red'
+              totalGainLoss >= 0 ? 'text-green-600' : 'text-destructive'
             }`}>
               {totalGainLoss >= 0 ? '+' : ''}{formatCurrency(totalGainLoss)}
             </p>
@@ -136,12 +138,21 @@ const Portfolio = () => {
       </div>
 
       {/* Portfolio Performance Chart */}
-      <div className="bg-white dark:bg-gray-800 rounded-lg shadow">
-        <div className="px-6 py-4 border-b border-gray-200 dark:border-gray-700">
+      <div className="bg-card rounded-xs shadow-sm border border-border overflow-hidden">
+        <div className="px-6 py-4 border-b border-border">
           <div className="flex items-center justify-between">
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
-              Portfolio Performance ({selectedPeriod})
-              <span className="text-sm font-normal text-gray-600 dark:text-gray-400 ml-2">
+            <div className="flex items-center gap-2">
+              <h3 className="text-lg font-semibold text-foreground">
+                Current Portfolio Performance ({selectedPeriod})
+              </h3>
+              <Tippy content="Price history of your currently owned stocks">
+                <button className="text-muted-foreground hover:text-foreground transition-colors">
+                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
+                  </svg>
+                </button>
+              </Tippy>
+              <span className="text-sm font-normal text-muted-foreground ml-2">
                 {(() => {
                   const selectedPeriodData = timePeriods.find(p => p.key === selectedPeriod);
                   switch (selectedPeriodData?.granularity) {
@@ -153,16 +164,16 @@ const Portfolio = () => {
                   }
                 })()}
               </span>
-            </h3>
+            </div>
             <div className="flex space-x-1">
               {timePeriods.map((period) => (
                 <button
                   key={period.key}
                   onClick={() => setSelectedPeriod(period.key)}
-                  className={`px-3 py-1 text-sm font-medium rounded-md transition-colors ${
+                  className={`px-3 py-1 text-sm font-medium rounded-xs transition-colors ${
                     selectedPeriod === period.key
-                      ? 'bg-azt-blue text-white'
-                      : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-700'
+                      ? 'bg-primary text-primary-foreground'
+                      : 'text-muted-foreground hover:text-foreground hover:bg-accent'
                   }`}
                 >
                   {period.label}
@@ -174,11 +185,11 @@ const Portfolio = () => {
         <div className="p-6">
           {historyLoading ? (
             <div className="animate-pulse">
-              <div className="h-4 bg-gray-300 dark:bg-gray-700 rounded w-1/4 mb-4"></div>
-              <div className="h-64 bg-gray-300 dark:bg-gray-700 rounded"></div>
+              <div className="h-4 bg-muted rounded-xs w-1/4 mb-4"></div>
+              <div className="h-64 bg-muted rounded-xs"></div>
             </div>
           ) : performanceData.length === 0 ? (
-            <div className="text-center py-8 text-gray-500 dark:text-gray-400">
+            <div className="text-center py-8 text-muted-foreground">
               <p>No historical data available for this period.</p>
               <p className="text-sm mt-2">Try selecting a different time period or check back later.</p>
             </div>
@@ -306,64 +317,64 @@ const Portfolio = () => {
       </div>
 
       {/* Holdings Table */}
-      <div className="bg-white dark:bg-gray-800 rounded-lg shadow overflow-hidden">
-        <div className="px-6 py-4 border-b border-gray-200 dark:border-gray-700">
-          <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
+      <div className="bg-card rounded-xs shadow-sm border border-border overflow-hidden">
+        <div className="px-6 py-4 border-b border-border">
+          <h3 className="text-lg font-semibold text-foreground">
             Current Holdings
           </h3>
         </div>
         
         {portfolio.holdings.length === 0 ? (
-          <div className="p-6 text-center text-gray-500 dark:text-gray-400">
+          <div className="p-6 text-center text-muted-foreground">
             <p>No holdings yet. Start trading to build your portfolio!</p>
           </div>
         ) : (
           <div className="overflow-x-auto">
-            <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
-              <thead className="bg-gray-50 dark:bg-gray-700">
+            <table className="min-w-full divide-y divide-border">
+              <thead className="bg-muted/50">
                 <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                  <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">
                     Symbol
                   </th>
-                  <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                  <th className="px-6 py-3 text-right text-xs font-medium text-muted-foreground uppercase tracking-wider">
                     Shares
                   </th>
-                  <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                  <th className="px-6 py-3 text-right text-xs font-medium text-muted-foreground uppercase tracking-wider">
                     Current Price
                   </th>
-                  <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                  <th className="px-6 py-3 text-right text-xs font-medium text-muted-foreground uppercase tracking-wider">
                     Market Value
                   </th>
                 </tr>
               </thead>
-              <tbody className="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
+              <tbody className="bg-card divide-y divide-border">
                 {portfolio.holdings.map((holding) => {
                   const stock = stocks.find(s => s.ticker === holding.ticker);
                   const currentPrice = stock ? stock.price : 0;
                   const marketValue = holding.shares * currentPrice;
                   
                   return (
-                    <tr key={holding.ticker} className="hover:bg-gray-50 dark:hover:bg-gray-700">
+                    <tr key={holding.ticker} className="hover:bg-accent/50 transition-colors">
                       <td className="px-6 py-4 whitespace-nowrap">
-                        <div className="text-sm font-medium text-gray-900 dark:text-gray-100">
+                        <div className="text-sm font-medium text-foreground">
                           {holding.ticker}
                         </div>
-                        <div className="text-sm text-gray-500 dark:text-gray-400">
+                        <div className="text-sm text-muted-foreground">
                           {stock ? stock.name : 'Unknown'}
                         </div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-right">
-                        <div className="text-sm text-gray-900 dark:text-gray-100">
+                        <div className="text-sm text-foreground">
                           {formatNumber(holding.shares)}
                         </div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-right">
-                        <div className="text-sm text-gray-900 dark:text-gray-100">
+                        <div className="text-sm text-foreground">
                           {formatCurrency(currentPrice)}
                         </div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-right">
-                        <div className="text-sm font-medium text-gray-900 dark:text-gray-100">
+                        <div className="text-sm font-medium text-foreground">
                           {formatCurrency(marketValue)}
                         </div>
                       </td>

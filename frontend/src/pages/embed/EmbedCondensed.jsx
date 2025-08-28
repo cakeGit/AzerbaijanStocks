@@ -62,7 +62,7 @@ const EmbedCondensed = ({ previewTheme }) => {
 
   if (loading || stocks.length === 0) {
     return (
-      <div className={`${isLightTheme ? 'bg-white text-gray-900 border-gray-300' : 'bg-gray-900 text-white border-gray-700'} rounded-lg border-2`} style={{ width: '160px', height: '35px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      <div className={`${isLightTheme ? 'bg-white text-gray-900 border-gray-200' : 'bg-gray-900 text-white border-gray-700'} rounded-sm border`} style={{ width: '160px', height: '35px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         <div className="animate-pulse">
           <div className="text-center">
             <div className="h-6 bg-gray-700 rounded w-32"></div>
@@ -82,14 +82,14 @@ const EmbedCondensed = ({ previewTheme }) => {
       className="block cursor-pointer"
     >
       <div
-        className={`${isLightTheme ? 'bg-white text-gray-900 border-gray-300' : 'bg-gray-900 text-white border-gray-700'} overflow-hidden flex items-center justify-center rounded-lg border-2`}
+        className={`${isLightTheme ? 'bg-white text-gray-900 border-gray-200' : 'bg-gray-900 text-white border-gray-700'} overflow-hidden flex items-center justify-center rounded-sm border`}
         style={{ width: '160px', height: '35px' }}
       >
         <div
           className={`text-center transition-all duration-300 ${isAnimating ? 'opacity-0 transform scale-95' : 'opacity-100 transform scale-100'}`}
         >
           <div className="flex items-center justify-center space-x-2">
-            <span className={`font-bold text-sm ${isLightTheme ? 'text-blue-600' : 'text-blue-400'}`}>
+            <span className={`font-bold text-sm ${isLightTheme ? 'text-gray-900' : 'text-white'}`}>
               {currentStock.ticker}
             </span>
             <span className={`text-sm ${isLightTheme ? 'text-gray-900' : 'text-white'}`}>

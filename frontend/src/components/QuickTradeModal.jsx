@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { FaTimes, FaCoins, FaChartLine, FaArrowUp, FaArrowDown } from 'react-icons/fa';
-import { useTheme } from '../contexts/ThemeContext';
 import { stocksApi } from '../utils/api';
 
 const QuickTradeModal = ({ stock, userId, isOpen, onClose }) => {
@@ -10,7 +9,6 @@ const QuickTradeModal = ({ stock, userId, isOpen, onClose }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
-  const { isDarkMode } = useTheme();
 
   useEffect(() => {
     if (isOpen) {
@@ -72,14 +70,14 @@ const QuickTradeModal = ({ stock, userId, isOpen, onClose }) => {
 
   return (
     <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" style={{ margin: 0 }}>
-      <div className={`rounded-lg max-w-md w-full max-h-[90vh] overflow-y-auto ${isDarkMode ? 'bg-gray-800 text-white' : 'bg-white text-gray-900'}`}>
-        <div className={`flex justify-between items-center p-6 border-b ${isDarkMode ? 'border-gray-700' : 'border-gray-200'}`}>
-          <h2 className={`text-lg font-semibold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+      <div className="bg-background border border-border rounded-lg max-w-md w-full max-h-[90vh] overflow-y-auto shadow-xl">
+        <div className="flex justify-between items-center p-6 border-b border-border bg-muted/50">
+          <h2 className="text-lg font-semibold text-foreground">
             Quick Trade - {stock.ticker}
           </h2>
           <button
             onClick={onClose}
-            className={isDarkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-400 hover:text-gray-600'}
+            className="text-muted-foreground hover:text-foreground"
           >
             <FaTimes />
           </button>
@@ -87,17 +85,17 @@ const QuickTradeModal = ({ stock, userId, isOpen, onClose }) => {
 
         <div className="p-6">
           {/* Stock Info */}
-          <div className={`mb-6 p-4 rounded-lg ${isDarkMode ? 'bg-gray-700' : 'bg-gray-50'}`}>
+          <div className="mb-6 p-4 bg-muted rounded-xs">
             <div className="flex justify-between items-start mb-2">
               <div>
-                <h3 className={`font-semibold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>{stock.name}</h3>
-                <p className={`text-sm ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>{stock.ticker}</p>
+                <h3 className="font-semibold text-foreground">{stock.name}</h3>
+                <p className="text-sm text-muted-foreground">{stock.ticker}</p>
               </div>
               <div className="text-right">
-                <div className={`text-lg font-bold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+                <div className="text-lg font-bold text-foreground">
                   ${stock.price.toFixed(2)}
                 </div>
-                <div className={`text-sm ${stock.change >= 0 ? (isDarkMode ? 'text-green-400' : 'text-green-600') : (isDarkMode ? 'text-red-400' : 'text-red-600')}`}>
+                <div className={`text-sm ${stock.change >= 0 ? 'text-green-600' : 'text-destructive'}`}>
                   {stock.change >= 0 ? <FaArrowUp className="inline mr-1" /> : <FaArrowDown className="inline mr-1" />}
                   {stock.change >= 0 ? '+' : ''}{stock.change.toFixed(2)}%
                 </div>
@@ -108,21 +106,21 @@ const QuickTradeModal = ({ stock, userId, isOpen, onClose }) => {
           {/* Current Holdings & Balance */}
           {userData && (
             <div className="mb-6 grid grid-cols-2 gap-4">
-              <div className={`p-3 rounded-lg ${isDarkMode ? 'bg-blue-900/20' : 'bg-blue-50'}`}>
-                <div className={`flex items-center text-sm mb-1 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
-                  <FaCoins className={`mr-1 ${isDarkMode ? 'text-yellow-400' : 'text-yellow-500'}`} />
+              <div className="p-3 bg-accent/50 rounded-xs border border-accent-foreground/20">
+                <div className="flex items-center text-sm mb-1 text-muted-foreground">
+                  <FaCoins className="mr-1 text-yellow-600" />
                   Cash Balance
                 </div>
-                <div className={`font-semibold ${isDarkMode ? 'text-blue-400' : 'text-blue-600'}`}>
+                <div className="font-semibold text-accent-foreground">
                   ${userData.cash.toFixed(2)}
                 </div>
               </div>
-              <div className={`p-3 rounded-lg ${isDarkMode ? 'bg-green-900/20' : 'bg-green-50'}`}>
-                <div className={`flex items-center text-sm mb-1 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
-                  <FaChartLine className={`mr-1 ${isDarkMode ? 'text-green-400' : 'text-green-500'}`} />
+              <div className="p-3 bg-green-50 rounded-xs border border-green-200">
+                <div className="flex items-center text-sm mb-1 text-muted-foreground">
+                  <FaChartLine className="mr-1 text-green-600" />
                   Current Shares
                 </div>
-                <div className={`font-semibold ${isDarkMode ? 'text-green-400' : 'text-green-600'}`}>
+                <div className="font-semibold text-green-700">
                   {currentShares} shares
                 </div>
               </div>
@@ -131,22 +129,22 @@ const QuickTradeModal = ({ stock, userId, isOpen, onClose }) => {
 
           {/* Trade Type Selection */}
           <div className="mb-4">
-            <div className={`flex rounded-lg border overflow-hidden ${isDarkMode ? 'border-gray-600' : 'border-gray-200'}`}>
+            <div className="flex rounded-xs border border-border overflow-hidden bg-muted">
               <button
-                className={`flex-1 py-2 px-4 text-sm font-medium ${
+                className={`flex-1 py-2 px-4 text-sm font-medium transition-colors ${
                   tradeType === 'buy'
-                    ? `${isDarkMode ? 'bg-blue-700' : 'bg-blue-600'} text-white`
-                    : `${isDarkMode ? 'bg-gray-800 text-gray-300 hover:bg-gray-700' : 'bg-white text-gray-700 hover:bg-gray-50'}`
+                    ? 'bg-primary text-primary-foreground'
+                    : 'bg-card text-muted-foreground hover:bg-accent hover:text-foreground'
                 }`}
                 onClick={() => setTradeType('buy')}
               >
                 Buy
               </button>
               <button
-                className={`flex-1 py-2 px-4 text-sm font-medium ${
+                className={`flex-1 py-2 px-4 text-sm font-medium transition-colors ${
                   tradeType === 'sell'
-                    ? `${isDarkMode ? 'bg-red-700' : 'bg-red-600'} text-white`
-                    : `${isDarkMode ? 'bg-gray-800 text-gray-300 hover:bg-gray-700' : 'bg-white text-gray-700 hover:bg-gray-50'}`
+                    ? 'bg-destructive text-destructive-foreground'
+                    : 'bg-card text-muted-foreground hover:bg-accent hover:text-foreground'
                 }`}
                 onClick={() => setTradeType('sell')}
               >
@@ -157,7 +155,7 @@ const QuickTradeModal = ({ stock, userId, isOpen, onClose }) => {
 
           {/* Quantity Input */}
           <div className="mb-4">
-            <label className={`block text-sm font-medium mb-2 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+            <label className="block text-sm font-medium mb-2 text-foreground">
               Quantity
             </label>
             <div className="flex">
@@ -167,37 +165,29 @@ const QuickTradeModal = ({ stock, userId, isOpen, onClose }) => {
                 max={tradeType === 'buy' ? maxBuyQuantity : maxSellQuantity}
                 value={quantity}
                 onChange={(e) => setQuantity(Math.max(1, parseInt(e.target.value) || 1))}
-                className={`flex-1 border rounded-l-md px-3 py-2 focus:ring-2 focus:ring-azt-blue focus:border-azt-blue ${
-                  isDarkMode
-                    ? 'border-gray-600 bg-gray-700 text-white placeholder-gray-400'
-                    : 'border-gray-300 bg-white'
-                }`}
+                className="flex-1 border border-border rounded-l-xs px-3 py-2 bg-background text-foreground focus:ring-2 focus:ring-ring focus:border-ring"
               />
               <button
                 onClick={handleMaxQuantity}
-                className={`px-3 py-2 border border-l-0 rounded-r-md text-sm ${
-                  isDarkMode
-                    ? 'border-gray-600 bg-gray-600 text-gray-300 hover:bg-gray-500'
-                    : 'border-gray-300 bg-gray-50 text-gray-700 hover:bg-gray-100'
-                }`}
+                className="px-3 py-2 border border-l-0 border-border rounded-r-xs bg-muted text-muted-foreground hover:bg-accent hover:text-foreground transition-colors"
               >
                 Max
               </button>
             </div>
-            <div className={`text-xs mt-1 ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+            <div className="text-xs mt-1 text-muted-foreground">
               Max {tradeType}: {tradeType === 'buy' ? maxBuyQuantity : maxSellQuantity} shares
             </div>
           </div>
 
           {/* Trade Summary */}
-          <div className={`mb-6 p-4 rounded-lg ${isDarkMode ? 'bg-gray-700' : 'bg-gray-50'}`}>
+          <div className="mb-6 p-4 bg-muted rounded-xs">
             <div className="flex justify-between items-center mb-2">
-              <span className={`text-sm ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>Total {tradeType === 'buy' ? 'Cost' : 'Revenue'}:</span>
-              <span className={`font-semibold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>${totalCost.toFixed(2)}</span>
+              <span className="text-sm text-muted-foreground">Total {tradeType === 'buy' ? 'Cost' : 'Revenue'}:</span>
+              <span className="font-semibold text-foreground">${totalCost.toFixed(2)}</span>
             </div>
             <div className="flex justify-between items-center">
-              <span className={`text-sm ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>New Balance:</span>
-              <span className={`font-semibold ${canAfford ? (isDarkMode ? 'text-green-400' : 'text-green-600') : (isDarkMode ? 'text-red-400' : 'text-red-600')}`}>
+              <span className="text-sm text-muted-foreground">New Balance:</span>
+              <span className={`font-semibold ${canAfford ? 'text-green-600' : 'text-destructive'}`}>
                 ${newBalance.toFixed(2)}
               </span>
             </div>
@@ -205,13 +195,13 @@ const QuickTradeModal = ({ stock, userId, isOpen, onClose }) => {
 
           {/* Messages */}
           {error && (
-            <div className={`mb-4 p-3 border rounded-md ${isDarkMode ? 'bg-red-900/20 border-red-700 text-red-400' : 'bg-red-50 border-red-200 text-red-700'}`}>
+            <div className="mb-4 p-3 border border-destructive bg-destructive/10 rounded-xs text-destructive">
               <div className="text-sm">{error}</div>
             </div>
           )}
 
           {success && (
-            <div className={`mb-4 p-3 border rounded-md ${isDarkMode ? 'bg-green-900/20 border-green-700 text-green-400' : 'bg-green-50 border-green-200 text-green-700'}`}>
+            <div className="mb-4 p-3 border border-green-600 bg-green-50 rounded-xs text-green-700">
               <div className="text-sm">{success}</div>
             </div>
           )}
@@ -220,23 +210,19 @@ const QuickTradeModal = ({ stock, userId, isOpen, onClose }) => {
           <div className="flex space-x-3">
             <button
               onClick={onClose}
-              className={`flex-1 py-2 px-4 border rounded-md ${
-                isDarkMode
-                  ? 'border-gray-600 text-gray-300 hover:bg-gray-700'
-                  : 'border-gray-300 text-gray-700 hover:bg-gray-50'
-              }`}
+              className="flex-1 py-2 px-4 border border-border rounded-xs bg-background text-foreground hover:bg-accent transition-colors"
             >
               Cancel
             </button>
             <button
               onClick={handleTrade}
               disabled={loading || !canAfford}
-              className={`flex-1 py-2 px-4 rounded-md font-medium ${
+              className={`flex-1 py-2 px-4 rounded-xs font-medium transition-colors ${
                 canAfford
                   ? tradeType === 'buy'
-                    ? `${isDarkMode ? 'bg-blue-700 hover:bg-blue-800' : 'bg-blue-600 hover:bg-blue-700'} text-white`
-                    : `${isDarkMode ? 'bg-red-700 hover:bg-red-800' : 'bg-red-600 hover:bg-red-700'} text-white`
-                  : `${isDarkMode ? 'bg-gray-600 text-gray-400' : 'bg-gray-300 text-gray-500'} cursor-not-allowed`
+                    ? 'bg-primary text-primary-foreground hover:bg-primary/90'
+                    : 'bg-destructive text-destructive-foreground hover:bg-destructive/90'
+                  : 'bg-muted text-muted-foreground cursor-not-allowed'
               }`}
             >
               {loading ? 'Processing...' : `${tradeType === 'buy' ? 'Buy' : 'Sell'} ${quantity} Shares`}

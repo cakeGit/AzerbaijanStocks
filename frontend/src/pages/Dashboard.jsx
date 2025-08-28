@@ -1,16 +1,18 @@
 import React, { memo } from 'react';
 import { useStocks } from '../hooks/useApi';
+import { useActiveTraders } from '../hooks/useApi';
 import { useTheme } from '../contexts/ThemeContext';
 import { useAuth } from '../contexts/AuthContext';
 import StocksTable from '../components/StocksTable';
 import DownloadsStatusWidget from '../components/DownloadsStatusWidget';
+import TopPerformers from '../components/TopPerformers';
 
 const DashboardCard = memo(({ title, value, colorClass }) => {
   return (
-    <div className={`rounded-lg shadow p-6 ${colorClass}`}>
+    <div className="rounded-xl shadow-md bg-card border border-border p-3">
       <div className="text-center">
-        <h3 className="text-lg font-semibold mb-2">Total Stocks</h3>
-        <p className="text-3xl font-bold smooth-update">
+        <h3 className="text-sm font-semibold mb-1 text-foreground">Total Stocks</h3>
+        <p className="text-xl font-bold smooth-update text-primary">
           {value}
         </p>
       </div>
@@ -20,6 +22,7 @@ const DashboardCard = memo(({ title, value, colorClass }) => {
 
 const Dashboard = memo(() => {
   const { stocks, loading, error } = useStocks();
+  const { activeTraders, loading: tradersLoading } = useActiveTraders();
   const { isDarkMode } = useTheme();
   const { user, isAuthenticated } = useAuth();
   const userId = user?.id;
@@ -27,15 +30,13 @@ const Dashboard = memo(() => {
   if (!isAuthenticated || !userId) {
     return (
       <div className="text-center py-12">
-        <div className={`mb-4 ${isDarkMode ? 'text-red-400' : 'text-red-600'}`}>
+        <div className="mb-4 text-destructive">
           <h2 className="text-xl font-semibold">Authentication Required</h2>
           <p>Please log in to access the dashboard and trade stocks.</p>
         </div>
         <button
           onClick={() => window.location.href = '/login'}
-          className={`px-4 py-2 rounded-md hover:opacity-90 transition-opacity ${
-            isDarkMode ? 'bg-azt-blue-dark text-white' : 'bg-azt-blue text-white'
-          }`}
+          className="px-4 py-2 rounded-xl bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
         >
           Go to Login
         </button>
@@ -46,15 +47,13 @@ const Dashboard = memo(() => {
   if (error) {
     return (
       <div className="text-center py-12">
-        <div className={`mb-4 ${isDarkMode ? 'text-red-400' : 'text-red-600'}`}>
+        <div className="mb-4 text-destructive">
           <h2 className="text-xl font-semibold">Error Loading Data</h2>
           <p>{error}</p>
         </div>
         <button
           onClick={() => window.location.reload()}
-          className={`px-4 py-2 rounded-md hover:opacity-90 transition-opacity ${
-            isDarkMode ? 'bg-azt-blue-dark text-white' : 'bg-azt-blue text-white'
-          }`}
+          className="px-4 py-2 rounded-xl bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
         >
           Retry
         </button>
@@ -65,32 +64,33 @@ const Dashboard = memo(() => {
   return (
     <div className="space-y-8">
       <div>
-        <h1 className={`text-3xl font-bold mb-2 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+        <h1 className="text-3xl font-bold mb-2 text-foreground">
           Market Dashboard
         </h1>
-        <p className={isDarkMode ? 'text-gray-300' : 'text-gray-600'}>
-          Welcome to the AZT Stock Exchange. Track and trade stocks of top Minecraft mod authors.
+        <p className="text-muted-foreground">
+          View the state of the create modding market.
         </p>
       </div>
+
+      <TopPerformers />
+
+      <StocksTable stocks={stocks} loading={loading} userId={userId} />
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <DashboardCard
           title="Total Stocks"
           value={loading ? '...' : stocks.length}
-          colorClass={isDarkMode ? 'bg-gray-800' : 'bg-white'}
         />
 
-        <div className={`rounded-lg shadow p-6 ${isDarkMode ? 'bg-gray-800' : 'bg-white'}`}>
+        <div className="rounded-xl shadow-md bg-card border border-border p-3">
           <div className="text-center">
-            <h3 className={`text-lg font-semibold mb-2 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>Active Traders</h3>
-            <p className={`text-3xl font-bold smooth-update ${isDarkMode ? 'text-azt-blue-dark' : 'text-azt-blue'}`}>
-              {loading ? '...' : '2'}
+            <h3 className="text-sm font-semibold mb-1 text-foreground">Active Traders</h3>
+            <p className="text-xl font-bold smooth-update text-primary">
+              {tradersLoading ? '...' : activeTraders.count}
             </p>
           </div>
         </div>
       </div>
-
-      <StocksTable stocks={stocks} loading={loading} userId={userId} />
     </div>
   );
 });

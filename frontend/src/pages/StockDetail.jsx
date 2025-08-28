@@ -5,7 +5,7 @@ import { useTheme } from '../contexts/ThemeContext';
 import StockChart from '../components/StockChart';
 import TradingForm from '../components/TradingForm';
 import { formatCurrency, formatChange, formatNumber, getChangeColor } from '../utils/formatting';
-import { ArrowLeftIcon } from '@heroicons/react/24/outline';
+import { ArrowLeftIcon, ArrowTopRightOnSquareIcon } from '@heroicons/react/24/outline';
 
 const StockDetail = () => {
   const { ticker } = useParams();
@@ -19,8 +19,8 @@ const StockDetail = () => {
     return (
       <div className="space-y-8">
         <div className="animate-pulse">
-          <div className="h-8 bg-gray-300 dark:bg-gray-700 rounded w-1/4 mb-4"></div>
-          <div className="h-4 bg-gray-300 dark:bg-gray-700 rounded w-1/2"></div>
+          <div className="h-8 bg-muted rounded-xl w-1/4 mb-4"></div>
+          <div className="h-4 bg-muted rounded-xl w-1/2"></div>
         </div>
       </div>
     );
@@ -29,11 +29,11 @@ const StockDetail = () => {
   if (!stock) {
     return (
       <div className="text-center py-12">
-        <h2 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-2">Stock Not Found</h2>
-        <p className="text-gray-600 dark:text-gray-400 mb-4">The stock ticker "{ticker}" was not found.</p>
+        <h2 className="text-xl font-semibold text-foreground mb-2">Stock Not Found</h2>
+        <p className="text-muted-foreground mb-4">The stock ticker "{ticker}" was not found.</p>
         <Link
           to="/"
-          className="text-azt-blue hover:text-blue-700 dark:hover:text-blue-300 font-medium"
+          className="text-primary hover:text-primary/80 font-medium transition-colors"
         >
           Back to Dashboard
         </Link>
@@ -52,12 +52,12 @@ const StockDetail = () => {
         <div className="flex items-center space-x-4">
           <Link
             to="/"
-            className="p-2 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700"
+            className="p-2 text-muted-foreground hover:text-foreground hover:bg-accent rounded-xl transition-colors"
           >
             <ArrowLeftIcon className="h-5 w-5" />
           </Link>
           <div>
-            <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100">
+            <h1 className="text-3xl font-bold text-foreground">
               {stock.ticker} - {stock.name}
             </h1>
             {stock.authorUrl && (
@@ -66,20 +66,21 @@ const StockDetail = () => {
                   href={stock.authorUrl} 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="text-azt-blue hover:text-blue-800 dark:hover:text-blue-300 text-sm font-medium"
+                  className="text-primary hover:text-primary/80 text-sm font-medium transition-colors inline-flex items-center gap-1"
                 >
-                  🔗 View on CurseForge
+                  <ArrowTopRightOnSquareIcon className="h-4 w-4" />
+                  View on CurseForge
                 </a>
               </div>
             )}
             <div className="flex items-center space-x-4 mt-2">
-              <span className="text-2xl font-bold text-gray-900 dark:text-gray-100">
+              <span className="text-2xl font-bold text-foreground">
                 {formatCurrency(stock.price)}
               </span>
               <span className={`text-lg font-medium ${getChangeColor(stock.change, isDarkMode)}`}>
                 {formatChange(stock.change)}
               </span>
-              <span className="text-gray-600 dark:text-gray-400">
+              <span className="text-muted-foreground">
                 Volume: {formatNumber(stock.volume)}
               </span>
             </div>

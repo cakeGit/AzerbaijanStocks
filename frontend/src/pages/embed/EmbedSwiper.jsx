@@ -7,7 +7,7 @@ const StockCard = memo(({ stock, isLightTheme }) => {
     <div className="max-w-sm w-full">
       <div className={`${isLightTheme ? 'bg-gray-100' : 'bg-gray-800'} rounded-lg p-6 shadow-lg transition-all duration-500`}>
         <div className="text-center">
-          <h3 className={`text-2xl font-bold mb-2 ${isLightTheme ? 'text-blue-600' : 'text-blue-400'}`}>
+          <h3 className={`text-2xl font-bold mb-2 ${isLightTheme ? 'text-gray-900' : 'text-white'}`}>
             {stock.ticker}
           </h3>
           <p className={`text-sm mb-4 ${isLightTheme ? 'text-gray-600' : 'text-gray-300'}`}>

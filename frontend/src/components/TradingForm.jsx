@@ -65,16 +65,16 @@ const TradingForm = ({ stock, onTrade, loading, portfolio }) => {
     : (portfolio?.cash || 0) + totalCost;
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-lg shadow">
-      <div className="px-6 py-4 border-b border-gray-200 dark:border-gray-700">
-        <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
+    <div className="bg-card rounded-lg shadow-md border border-border">
+      <div className="px-6 py-4 border-b border-border">
+        <h3 className="text-lg font-semibold text-foreground">
           Trade {stock.ticker}
         </h3>
       </div>
       
       <form onSubmit={handleSubmit} className="p-6 space-y-6">
         <div>
-          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+          <label className="block text-sm font-medium text-foreground mb-2">
             Action
           </label>
           <div className="flex space-x-4">
@@ -84,9 +84,9 @@ const TradingForm = ({ stock, onTrade, loading, portfolio }) => {
                 value="buy"
                 checked={action === 'buy'}
                 onChange={(e) => setAction(e.target.value)}
-                className="mr-2 text-azt-blue"
+                className="mr-2 text-primary"
               />
-              <span className="text-sm text-gray-700 dark:text-gray-300">Buy</span>
+              <span className="text-sm text-foreground">Buy</span>
             </label>
             <label className="flex items-center">
               <input
@@ -94,15 +94,15 @@ const TradingForm = ({ stock, onTrade, loading, portfolio }) => {
                 value="sell"
                 checked={action === 'sell'}
                 onChange={(e) => setAction(e.target.value)}
-                className="mr-2 text-azt-blue"
+                className="mr-2 text-primary"
               />
-              <span className="text-sm text-gray-700 dark:text-gray-300">Sell</span>
+              <span className="text-sm text-foreground">Sell</span>
             </label>
           </div>
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+          <label className="block text-sm font-medium text-foreground mb-2">
             Number of Shares
           </label>
           <input
@@ -110,37 +110,37 @@ const TradingForm = ({ stock, onTrade, loading, portfolio }) => {
             min="1"
             value={shares}
             onChange={(e) => setShares(e.target.value)}
-            className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-azt-blue focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100"
+            className="w-full px-3 py-2 border border-border rounded-xs bg-background text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent transition-colors"
             placeholder="Enter number of shares"
             required
           />
         </div>
 
-        <div className="bg-gray-50 dark:bg-gray-700 p-4 rounded-md">
+        <div className="bg-muted p-4 rounded-xs">
           <div className="flex justify-between items-center mb-2">
-            <span className="text-sm text-gray-600 dark:text-gray-400">Current Price:</span>
-            <span className="text-sm font-medium text-gray-900 dark:text-gray-100">{formatCurrency(stock.price)}</span>
+            <span className="text-sm text-muted-foreground">Current Price:</span>
+            <span className="text-sm font-medium text-foreground">{formatCurrency(stock.price)}</span>
           </div>
           {ownedShares > 0 && (
             <>
               <div className="flex justify-between items-center mb-2">
-                <span className="text-sm text-gray-600 dark:text-gray-400">You Own:</span>
-                <span className="text-sm font-medium text-gray-900 dark:text-gray-100">{ownedShares} shares</span>
+                <span className="text-sm text-muted-foreground">You Own:</span>
+                <span className="text-sm font-medium text-foreground">{ownedShares} shares</span>
               </div>
               <div className="flex justify-between items-center mb-2">
-                <span className="text-sm text-gray-600 dark:text-gray-400">Portfolio %:</span>
-                <span className="text-sm font-medium text-gray-900 dark:text-gray-100">{stockPercentage.toFixed(2)}%</span>
+                <span className="text-sm text-muted-foreground">Portfolio %:</span>
+                <span className="text-sm font-medium text-foreground">{stockPercentage.toFixed(2)}%</span>
               </div>
             </>
           )}
           <div className="flex justify-between items-center mb-2">
-            <span className="text-sm text-gray-600 dark:text-gray-400">Total {action === 'buy' ? 'Cost' : 'Value'}:</span>
-            <span className="text-sm font-medium text-gray-900 dark:text-gray-100">{formatCurrency(totalCost)}</span>
+            <span className="text-sm text-muted-foreground">Total {action === 'buy' ? 'Cost' : 'Value'}:</span>
+            <span className="text-sm font-medium text-foreground">{formatCurrency(totalCost)}</span>
           </div>
           {shares && (
             <div className="flex justify-between items-center">
-              <span className="text-sm text-gray-600 dark:text-gray-400">Balance After:</span>
-              <span className={`text-sm font-medium ${balanceAfterTransaction >= 0 ? 'text-gray-900 dark:text-gray-100' : 'text-red-600'}`}>
+              <span className="text-sm text-muted-foreground">Balance After:</span>
+              <span className={`text-sm font-medium ${balanceAfterTransaction >= 0 ? 'text-foreground' : 'text-destructive'}`}>
                 {formatCurrency(balanceAfterTransaction)}
               </span>
             </div>
@@ -148,10 +148,10 @@ const TradingForm = ({ stock, onTrade, loading, portfolio }) => {
         </div>
 
         {message && (
-          <div className={`p-3 rounded-md ${
+          <div className={`p-3 rounded-xs ${
             message.includes('Successfully') 
-              ? 'bg-green-50 text-green-800' 
-              : 'bg-red-50 text-red-800'
+              ? 'bg-green-50 text-green-800 border border-green-200' 
+              : 'bg-destructive/10 text-destructive border border-destructive/20'
           }`}>
             <p className="text-sm">{message}</p>
           </div>
@@ -160,10 +160,10 @@ const TradingForm = ({ stock, onTrade, loading, portfolio }) => {
         <button
           type="submit"
           disabled={isSubmitting || loading || !shares || (action === 'sell' && parseInt(shares) > ownedShares)}
-          className={`w-full py-2 px-4 rounded-md font-medium transition-colors ${
+          className={`w-full py-2 px-4 rounded-xs font-medium transition-colors ${
             action === 'buy'
-              ? 'bg-azt-green hover:bg-green-700 text-white'
-              : 'bg-azt-red hover:bg-red-700 text-white'
+              ? 'bg-primary text-primary-foreground hover:bg-primary/90'
+              : 'bg-destructive text-destructive-foreground hover:bg-destructive/90'
           } ${
             (isSubmitting || loading || !shares || (action === 'sell' && parseInt(shares) > ownedShares)) 
               ? 'opacity-50 cursor-not-allowed' 

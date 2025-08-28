@@ -11,9 +11,9 @@ const StockChart = ({ ticker, loading: parentLoading }) => {
 
   const timePeriods = [
     { key: '1H', label: '1H', hours: 1, granularity: 'minute' },
-    { key: '1D', label: '1D', days: 1, granularity: 'minute' },
+    { key: '1D', label: '1D', days: 1, granularity: 'hour' },
     { key: '1W', label: '1W', days: 7, granularity: 'hour' },
-    { key: '1M', label: '1M', days: 30, granularity: 'hour' },
+    { key: '1M', label: '1M', days: 30, granularity: 'day' },
     { key: '3M', label: '3M', days: 90, granularity: 'day' },
     { key: '6M', label: '6M', days: 180, granularity: 'day' },
     { key: '1Y', label: '1Y', days: 365, granularity: 'month' }
@@ -263,12 +263,12 @@ const StockChart = ({ ticker, loading: parentLoading }) => {
   }, []);
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-lg shadow">
-      <div className="px-6 py-4 border-b border-gray-200 dark:border-gray-700">
+    <div className="bg-card rounded-xs shadow-sm border border-border">
+      <div className="px-6 py-4 border-b border-border">
         <div className="flex items-center justify-between">
-          <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
+          <h3 className="text-lg font-semibold text-foreground">
             {ticker} Candlestick Chart ({selectedPeriod})
-            <span className="text-sm font-normal text-gray-600 dark:text-gray-400 ml-2">
+            <span className="text-sm font-normal text-muted-foreground ml-2">
               {(() => {
                 const selectedPeriodData = timePeriods.find(p => p.key === selectedPeriod);
                 switch (selectedPeriodData?.granularity) {
@@ -286,10 +286,10 @@ const StockChart = ({ ticker, loading: parentLoading }) => {
               <button
                 key={period.key}
                 onClick={() => setSelectedPeriod(period.key)}
-                className={`px-3 py-1 text-sm font-medium rounded-md transition-colors ${
+                className={`px-3 py-1 text-sm font-medium rounded-xs transition-colors ${
                   selectedPeriod === period.key
-                    ? 'bg-azt-blue text-white'
-                    : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-700'
+                    ? 'bg-primary text-primary-foreground'
+                    : 'text-muted-foreground hover:text-foreground hover:bg-accent'
                 }`}
               >
                 {period.label}
@@ -302,8 +302,8 @@ const StockChart = ({ ticker, loading: parentLoading }) => {
       <div className="p-6">
         {loading ? (
           <div className="animate-pulse">
-            <div className="h-4 bg-gray-300 dark:bg-gray-700 rounded w-1/4 mb-4"></div>
-            <div className="h-64 bg-gray-300 dark:bg-gray-700 rounded"></div>
+            <div className="h-4 bg-muted rounded-xs w-1/4 mb-4"></div>
+            <div className="h-64 bg-muted rounded-xs"></div>
           </div>
         ) : (
           <div className="relative">
@@ -317,7 +317,7 @@ const StockChart = ({ ticker, loading: parentLoading }) => {
 
             {/* Tooltip */}
             {hoveredBar !== null && ohlcData[hoveredBar] && (
-              <div className="absolute top-4 left-4 bg-gray-900 dark:bg-gray-700 text-white px-3 py-2 rounded-lg shadow-lg pointer-events-none z-10">
+              <div className="absolute top-4 left-4 bg-popover text-popover-foreground px-3 py-2 rounded-xs shadow-lg border border-border pointer-events-none z-10">
                 <div className="text-sm font-medium mb-1">
                   {(() => {
                     const date = new Date(ohlcData[hoveredBar].timestamp);

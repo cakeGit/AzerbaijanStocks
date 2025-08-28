@@ -5,7 +5,7 @@ import { formatCurrency, formatChange, getChangeColor } from '../../utils/format
 const TickerItem = memo(({ stock, isLightTheme }) => {
   return (
     <span className="flex items-center space-x-2 whitespace-nowrap text-sm">
-      <span className={`font-bold ${isLightTheme ? 'text-blue-600' : 'text-blue-400'}`}>
+      <span className={`font-bold ${isLightTheme ? 'text-gray-900' : 'text-white'}`}>
         {stock.ticker}
       </span>
       <span className={`${isLightTheme ? 'text-gray-900' : 'text-white'} smooth-update`}>

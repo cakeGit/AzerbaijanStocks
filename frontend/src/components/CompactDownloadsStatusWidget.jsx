@@ -83,9 +83,7 @@ const CompactDownloadsStatusWidget = () => {
   return (
     <Tippy content="Using CurseForge download data from CreateRanked">
         <div
-            className={`flex items-center space-x-2 px-4 py-2 rounded-md text-xs font-medium transition-colors ${
-                isDarkMode ? 'bg-gray-700 hover:bg-gray-600' : 'bg-gray-100 hover:bg-gray-200'
-            }`}
+            className="flex items-center space-x-2 px-4 py-2 rounded-xs text-xs font-medium bg-muted text-muted-foreground hover:bg-accent hover:text-accent-foreground transition-colors"
         >
             <span className="text-sm">{getStatusIcon()}</span>
             <span className={getStatusColor()}>

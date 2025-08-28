@@ -56,25 +56,21 @@ const EmbedCodeGenerator = () => {
   };
 
   return (
-    <div className={`rounded-lg shadow p-6 ${isDarkMode ? 'bg-gray-800' : 'bg-white'}`}>
-      <h3 className={`text-lg font-semibold mb-4 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+    <div className="space-y-4">
+      <h3 className="text-lg font-semibold text-foreground">
         Embed Stock Displays
       </h3>
 
       <div className="space-y-4">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label className={`block text-sm font-medium mb-2 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+            <label className="block text-sm font-medium mb-2 text-foreground">
               Display Type
             </label>
             <select
               value={selectedType}
               onChange={(e) => setSelectedType(e.target.value)}
-              className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-azt-blue ${
-                isDarkMode
-                  ? 'bg-gray-700 border-gray-600 text-white focus:border-azt-blue-dark'
-                  : 'bg-white border-gray-300 text-gray-900 focus:border-azt-blue'
-              }`}
+              className="w-full px-3 py-2 border border-border rounded-xs bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent sm:text-sm transition-colors"
             >
               <option value="ticker">Scrolling Ticker Tape</option>
               <option value="swiper">Swiping Stock Cards</option>
@@ -83,17 +79,13 @@ const EmbedCodeGenerator = () => {
           </div>
 
           <div>
-            <label className={`block text-sm font-medium mb-2 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+            <label className="block text-sm font-medium mb-2 text-foreground">
               Theme
             </label>
             <select
               value={selectedTheme}
               onChange={(e) => setSelectedTheme(e.target.value)}
-              className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-azt-blue ${
-                isDarkMode
-                  ? 'bg-gray-700 border-gray-600 text-white focus:border-azt-blue-dark'
-                  : 'bg-white border-gray-300 text-gray-900 focus:border-azt-blue'
-              }`}
+              className="w-full px-3 py-2 border border-border rounded-xs bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent sm:text-sm transition-colors"
             >
               <option value="dark">Dark Theme</option>
               <option value="light">Light Theme</option>
@@ -102,16 +94,12 @@ const EmbedCodeGenerator = () => {
         </div>
 
         {/* Preview Section */}
-        <div>
-          <label className={`block text-sm font-medium mb-2 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+        <div className="bg-card rounded-lg p-4 border border-border">
+          <label className="block text-sm font-medium mb-2 text-foreground">
             Live Preview
           </label>
-          <div className={`border-2 rounded-md overflow-hidden relative ${
-            isDarkMode ? 'border-gray-600 bg-gray-900' : 'border-gray-300 bg-gray-50'
-          }`}>
-            <div className={`absolute top-2 left-2 px-2 py-1 text-xs rounded z-10 ${
-              isDarkMode ? 'bg-gray-700/70 text-gray-300' : 'bg-gray-200/70 text-gray-600'
-            }`}>
+          <div className="border-2 border-border rounded-xs overflow-hidden relative bg-muted">
+            <div className="absolute top-2 left-2 px-2 py-1 text-xs rounded-xs z-10 bg-muted text-muted-foreground">
               Preview
             </div>
             {selectedType === 'ticker' ? (
@@ -135,29 +123,23 @@ const EmbedCodeGenerator = () => {
           </p>
         </div>
 
-        <div>
-          <label className={`block text-sm font-medium mb-2 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+        <div className="bg-card rounded-lg p-4 border border-border">
+          <label className="block text-sm font-medium mb-2 text-foreground">
             Embed Code
           </label>
           <div className="relative">
             <textarea
               readOnly
               value={generateEmbedCode(selectedType, selectedTheme)}
-              className={`w-full px-3 py-2 border rounded-md font-mono text-sm resize-none ${
-                isDarkMode
-                  ? 'bg-gray-700 border-gray-600 text-gray-300'
-                  : 'bg-gray-50 border-gray-300 text-gray-900'
-              }`}
+              className="w-full px-3 py-2 border border-border rounded-xs bg-muted text-foreground font-mono text-sm resize-none"
               rows={6}
             />
             <button
               onClick={copyToClipboard}
-              className={`absolute top-2 right-2 px-3 py-1 text-sm rounded-md transition-colors ${
+              className={`absolute top-2 right-2 px-3 py-1 text-sm rounded-xs transition-colors ${
                 copied
                   ? 'bg-green-600 text-white'
-                  : isDarkMode
-                    ? 'bg-azt-blue-dark text-white hover:bg-azt-blue'
-                    : 'bg-azt-blue text-white hover:bg-azt-blue-dark'
+                  : 'bg-primary text-primary-foreground hover:bg-primary/90'
               }`}
             >
               {copied ? 'Copied!' : 'Copy'}
@@ -165,15 +147,17 @@ const EmbedCodeGenerator = () => {
           </div>
         </div>
 
-        <div className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-          <p className="mb-2">
-            <strong>Instructions:</strong>
-          </p>
-          <ol className="list-decimal list-inside space-y-1">
-            <li>Copy the embed code above</li>
-            <li>Paste it into your website's HTML</li>
-            <li>The embedded display will automatically sync with live market data</li>
-          </ol>
+        <div className="bg-card rounded-lg p-4 border border-border">
+          <div className="text-sm text-muted-foreground">
+            <p className="mb-2">
+              <strong>Instructions:</strong>
+            </p>
+            <ol className="list-decimal list-inside space-y-1">
+              <li>Copy the embed code above</li>
+              <li>Paste it into your website's HTML</li>
+              <li>The embedded display will automatically sync with live market data</li>
+            </ol>
+          </div>
         </div>
       </div>
     </div>

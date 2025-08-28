@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { useTheme } from '../contexts/ThemeContext';
 
 const DownloadsStatusWidget = () => {
   const [status, setStatus] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const { isDarkMode } = useTheme();
 
   useEffect(() => {
     const fetchStatus = async () => {
@@ -34,16 +32,16 @@ const DownloadsStatusWidget = () => {
   }, []);
 
   const getStatusColor = () => {
-    if (!status) return isDarkMode ? 'text-gray-400' : 'text-gray-600';
+    if (!status) return 'text-muted-foreground';
 
     const { systemStatus, externalApi } = status;
 
     if (systemStatus.isUsingRealStats && externalApi.status === 'available') {
-      return isDarkMode ? 'text-green-400' : 'text-green-600';
+      return 'text-green-600';
     } else if (systemStatus.isGeneratingData) {
-      return isDarkMode ? 'text-yellow-400' : 'text-yellow-800';
+      return 'text-yellow-600';
     } else {
-      return isDarkMode ? 'text-red-400' : 'text-red-600';
+      return 'text-destructive';
     }
   };
 
@@ -74,16 +72,16 @@ const DownloadsStatusWidget = () => {
   };
 
   return (
-    <div className={`rounded-lg shadow p-6 ${isDarkMode ? 'bg-gray-800' : 'bg-white'}`}>
+    <div className="bg-card rounded-xs shadow-sm border border-border p-6">
       <div className="text-center">
-        <h3 className={`text-lg font-semibold mb-2 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+        <h3 className="text-lg font-semibold mb-2 text-foreground">
           Data Status
         </h3>
         <p className={`text-lg font-medium smooth-update ${getStatusColor()}`}>
           {getStatusText()}
         </p>
         {!loading && !error && status && (
-          <div className={`text-sm mt-2 ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+          <div className="text-sm mt-2 text-muted-foreground">
             <div>{getStatusDetails()}</div>
             <div className="mt-1">
               API: {status.externalApi.status}
@@ -96,7 +94,7 @@ const DownloadsStatusWidget = () => {
           </div>
         )}
         {error && (
-          <div className={`text-sm mt-2 ${isDarkMode ? 'text-red-400' : 'text-red-600'}`}>
+          <div className="text-sm mt-2 text-destructive">
             Failed to load
           </div>
         )}

@@ -24,14 +24,14 @@ const Layout = ({ children }) => {
   };
 
   return (
-    <div className={`min-h-screen flex flex-col ${isDarkMode ? 'bg-gray-900 text-white' : 'bg-gray-50 text-gray-900'}`}>
+    <div className={`min-h-screen flex flex-col bg-background text-foreground`}>
       {/* Header */}
-      <header className={`${isDarkMode ? 'bg-gray-800 shadow-gray-700' : 'bg-white shadow-sm'}`}>
+      <header className="bg-card shadow-md border-b border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center">
               <Link to="/" className="flex items-center">
-                <h1 className={`text-2xl font-bold ${isDarkMode ? 'text-azt-blue-dark' : 'text-azt-blue'}`}>AZT Stock Exchange</h1>
+                <h1 className="text-2xl font-bold text-primary">AZT Stock Exchange</h1>
               </Link>
             </div>
 
@@ -41,10 +41,10 @@ const Layout = ({ children }) => {
                   <Link
                     key={item.name}
                     to={item.href}
-                    className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                    className={`px-3 py-2 rounded-xl text-sm font-medium transition-colors ${
                       location.pathname === item.href
-                        ? `${isDarkMode ? 'bg-azt-blue-dark' : 'bg-azt-blue'} text-white`
-                        : `${isDarkMode ? 'text-gray-300 hover:text-white hover:bg-gray-700' : 'text-gray-700 hover:text-azt-blue hover:bg-gray-100'}`
+                        ? 'bg-primary text-primary-foreground'
+                        : 'text-muted-foreground hover:text-foreground hover:bg-accent'
                     }`}
                   >
                     {item.name}
@@ -56,11 +56,7 @@ const Layout = ({ children }) => {
                 {/* Theme Toggle */}
                 <button
                   onClick={toggleTheme}
-                  className={`p-2 rounded-md transition-colors ${
-                    isDarkMode
-                      ? 'text-yellow-400 hover:bg-gray-700'
-                      : 'text-gray-600 hover:bg-gray-100'
-                  }`}
+                  className="p-2 rounded-xl transition-colors text-muted-foreground hover:text-foreground hover:bg-accent"
                   title={isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
                 >
                   {isDarkMode ? (
@@ -79,14 +75,10 @@ const Layout = ({ children }) => {
 
                 {/* User Menu */}
                 <div className="flex items-center space-x-2">
-                  <span className={`text-sm ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>Welcome, {user?.username}</span>
+                  <span className="text-sm text-muted-foreground">Welcome, <span className="font-bold">{user?.username}</span></span>
                   <button
                     onClick={handleLogout}
-                    className={`px-3 py-1 text-sm rounded-md transition-colors ${
-                      isDarkMode
-                        ? 'text-gray-300 hover:text-red-400 hover:bg-red-900/20'
-                        : 'text-gray-700 hover:text-red-600 hover:bg-red-50'
-                    }`}
+                    className="px-3 py-1 text-sm rounded-xl transition-colors text-muted-foreground hover:text-destructive hover:bg-destructive/10 border border-border"
                   >
                     Logout
                   </button>
@@ -106,13 +98,13 @@ const Layout = ({ children }) => {
       </main>
 
       {/* Footer */}
-      <footer className={`footer ${isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-t'}`}>
+      <footer className="footer bg-card border-t border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <div className={`text-center md:text-left ${isDarkMode ? 'text-gray-400' : 'text-gray-500'} text-sm`}>
-              <p>&copy; 2025 AZT Stock Exchange Simulator. Built for Minecraft mod authors.</p>
+            <div className="text-center md:text-left text-muted-foreground text-sm">
+              <p>Each stock represents a Minecraft mod author. Stock prices are based on their mod download counts and community engagement.</p>
               <p className="mt-1">
-                This is a simulation and not real financial advice. Trade responsibly!
+                This is a simulation and not real financial advice.
               </p>
             </div>
 
@@ -122,11 +114,7 @@ const Layout = ({ children }) => {
 
               <button
                 onClick={() => setShowEmbedModal(true)}
-                className={`flex items-center space-x-2 px-4 py-2 rounded-md transition-colors ${
-                  isDarkMode
-                    ? 'text-blue-400 hover:bg-gray-700 border border-gray-600'
-                    : 'text-blue-600 hover:bg-gray-100 border border-gray-300'
-                }`}
+                className="flex items-center space-x-2 px-4 py-2 rounded-xl transition-colors bg-card border border-border text-primary hover:bg-accent hover:text-accent-foreground"
                 title="Get stock info embed"
               >
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -142,20 +130,16 @@ const Layout = ({ children }) => {
 
       {/* Embed Code Modal */}
       {showEmbedModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-          <div className={`relative max-w-4xl w-full max-h-[90vh] overflow-y-auto rounded-lg shadow-xl ${
-            isDarkMode ? 'bg-gray-800' : 'bg-white'
-          }`}>
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
+          <div className="relative max-w-4xl w-full max-h-[90vh] overflow-y-auto rounded-lg shadow-xl bg-background border border-border">
             <div className="p-6">
               <div className="flex justify-between items-center mb-6">
-                <h2 className={`text-2xl font-bold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+                <h2 className="text-2xl font-bold text-foreground">
                   Embed Stock Displays
                 </h2>
                 <button
                   onClick={() => setShowEmbedModal(false)}
-                  className={`p-2 rounded-md transition-colors ${
-                    isDarkMode ? 'text-gray-400 hover:text-white hover:bg-gray-700' : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
-                  }`}
+                  className="p-2 rounded-xl transition-colors text-muted-foreground hover:text-destructive hover:bg-destructive/10"
                 >
                   <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />

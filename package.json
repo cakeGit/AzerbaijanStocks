@@ -10,9 +10,8 @@
     "dev:backend": "cd backend && npm run dev",
     "dev:frontend": "cd frontend && npm start",
     "build:frontend": "cd frontend && npm run build",
-    "build": "cd frontend && npm run build",
-    "start": "npm run build && cd backend && powershell -Command \"$env:NODE_ENV='production'; npm start\"",
-    "start:unix": "npm run build && cd backend && NODE_ENV=production npm start",
+    "start": "npm run build:frontend && cd backend && powershell -Command \"$env:NODE_ENV='production'; npm start\"",
+    "start:unix": "npm run build:frontend && cd backend && NODE_ENV=production npm start",
     "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
     "test:backend": "cd backend && npm test",
     "test:frontend": "cd frontend && npm test",
@@ -47,8 +46,5 @@
   "engines": {
     "node": ">=16.0.0",
     "npm": ">=7.0.0"
-  },
-  "dependencies": {
-    "tippy.js": "^6.3.7"
   }
 }

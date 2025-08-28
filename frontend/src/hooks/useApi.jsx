@@ -165,3 +165,34 @@ export const usePortfolioHistory = (userId, period = '1D', granularity = 'minute
 
   return { history, loading, error };
 };
+
+export const useActiveTraders = () => {
+  const [activeTraders, setActiveTraders] = useState({ count: 0, totalUsers: 0 });
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  const fetchActiveTraders = async () => {
+    try {
+      setLoading(true);
+      const response = await stocksApi.getActiveTraders();
+      setActiveTraders({
+        count: response.data.count,
+        totalUsers: response.data.totalUsers
+      });
+      setError(null);
+    } catch (err) {
+      setError('Failed to fetch active traders count');
+      console.error('Error fetching active traders:', err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchActiveTraders();
+    const interval = setInterval(fetchActiveTraders, 30000); // Refresh every 30 seconds
+    return () => clearInterval(interval);
+  }, []);
+
+  return { activeTraders, loading, error, refetch: fetchActiveTraders };
+};

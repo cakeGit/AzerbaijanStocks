@@ -39,7 +39,7 @@ if "%choice%"=="1" (
 ) else if "%choice%"=="2" (
     echo 🏭 Starting production mode...
     echo Building frontend...
-    npm run build
+    npm run build:frontend
     echo Starting combined server...
     npm start
 ) else (
@@ -50,8 +50,13 @@ if "%choice%"=="1" (
 echo.
 echo 🎉 AZT Stock Exchange is running!
 echo.
-echo 📈 Application: http://localhost:3001
-echo 🔧 API: http://localhost:3001/api
+if "%choice%"=="1" (
+    echo 📈 Frontend: http://localhost:3000
+    echo 🔧 Backend API: http://localhost:3001
+) else (
+    echo 📈 Application: http://localhost:3001
+    echo 🔧 API: http://localhost:3001/api
+)
 echo.
 echo Press any key to exit...
 pause >nul
