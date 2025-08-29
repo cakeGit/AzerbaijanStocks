@@ -20,7 +20,7 @@
     "react-router-dom": "^6.15.0",
     "recharts": "^2.8.0",
     "tailwindcss": "^4.1.12",
-    "tw-animate-css": "^2.1.0"
+    "tw-animate-css": "^1.3.7"
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^4.7.0",
