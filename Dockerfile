@@ -8,7 +8,7 @@ RUN npm install --production
 COPY backend ./
 
 # Stage 2: build frontend
-FROM node:18-alpine AS frontend-build
+FROM node:18-slim AS frontend-build
 WORKDIR /app/frontend
 COPY frontend/package*.json ./
 RUN npm install
