@@ -1,45 +1,33 @@
-# Multi-stage build for combined frontend and backend
-FROM node:18-alpine as builder
+# Multi-stage Dockerfile for AZT Stock Exchange
 
-# Set working directory
+# Stage 1: build backend
+FROM node:18-alpine AS backend-build
+WORKDIR /app/backend
+COPY backend/package*.json ./
+RUN npm install --production
+COPY backend ./
+
+# Stage 2: build frontend
+FROM node:18-alpine AS frontend-build
+WORKDIR /app/frontend
+COPY frontend/package*.json ./
+RUN npm install
+COPY frontend ./
+RUN npm run build
+
+# Stage 3: production image
+FROM node:18-alpine AS runner
 WORKDIR /app
-
-# Copy package files for both frontend and backend
-COPY backend/package*.json ./backend/
-COPY frontend/package*.json ./frontend/
-
-# Install dependencies for both
-RUN cd backend && npm ci --only=production
-RUN cd frontend && npm ci
-
-# Copy source code
-COPY backend/ ./backend/
-COPY frontend/ ./frontend/
-
-# Build frontend for production
-RUN cd frontend && npm run build
-
-# Production stage
-FROM node:18-alpine
-
-# Set working directory
-WORKDIR /app
+ENV NODE_ENV=production
+ENV PORT=3001
 
 # Copy backend with dependencies
-COPY --from=builder /app/backend/ ./backend/
-
-# Copy built frontend
-COPY --from=builder /app/frontend/build/ ./frontend/build/
-
+COPY --from=backend-build /app/backend ./backend
+# Copy frontend build
+COPY --from=frontend-build /app/frontend/build ./frontend/build
 # Copy data directory
-COPY data/ ./data/
+COPY data ./data
 
-# Expose port
 EXPOSE 3001
 
-# Create volume for data persistence
-VOLUME ["/app/data"]
-
-# Start the backend server (which now serves frontend too)
-WORKDIR /app/backend
-CMD ["node", "server.js"]
+CMD ["node", "backend/server.js"]
