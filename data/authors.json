@@ -23,10 +23,184 @@
     "authorUrl": "https://www.curseforge.com/members/spydnel/projects",
     "curseforgeId": "spydnel"
   },
-  { 
-    "ticker": "DRP", 
-    "name": "DragonsPlus (arch nemesis of azerbaijan tech)", 
-    "authorUrl": "https://www.curseforge.com/members/dragonsplus/projects",
+    {
+    "ticker": "MRH",
+    "name": "MRHminer",
+    "authorUrl": "https://www.curseforge.com/members/mrhminer/projects",    
+    "curseforgeId": "mrhminer"
+  },
+  {
+    "ticker": "DRA",
+    "name": "DragonsPlus",
+    "authorUrl": "https://www.curseforge.com/members/dragonsplus/projects", 
     "curseforgeId": "dragonsplus"
+  },
+  {
+    "ticker": "RAY",
+    "name": "RaymondBlaze",
+    "authorUrl": "https://www.curseforge.com/members/raymondblaze/projects",
+    "curseforgeId": "raymondblaze"
+  },
+  {
+    "ticker": "ITH",
+    "name": "IThundxr",
+    "authorUrl": "https://www.curseforge.com/members/ithundxr/projects",    
+    "curseforgeId": "ithundxr"
+  },
+  {
+    "ticker": "SLI",
+    "name": "slimeistdev",
+    "authorUrl": "https://www.curseforge.com/members/slimeistdev/projects", 
+    "curseforgeId": "slimeistdev"
+  },
+  {
+    "ticker": "SPO",
+    "name": "spottytheturtle",
+    "authorUrl": "https://www.curseforge.com/members/spottytheturtle/projects",
+    "curseforgeId": "spottytheturtle"
+  },
+  {
+    "ticker": "MAR",
+    "name": "MarbleGate",
+    "authorUrl": "https://www.curseforge.com/members/marblegate/projects",  
+    "curseforgeId": "marblegate"
+  },
+  {
+    "ticker": "POS",
+    "name": "possible_triangle",
+    "authorUrl": "https://www.curseforge.com/members/possible_triangle/projects",
+    "curseforgeId": "possible_triangle"
+  },
+  {
+    "ticker": "FUR",
+    "name": "Furti_Two",
+    "authorUrl": "https://www.curseforge.com/members/furti_two/projects",   
+    "curseforgeId": "furti_two"
+  },
+  {
+    "ticker": "ORD",
+    "name": "OrdanaryMods",
+    "authorUrl": "https://www.curseforge.com/members/ordanarymods/projects",
+    "curseforgeId": "ordanarymods"
+  },
+  {
+    "ticker": "LYS",
+    "name": "Lysine",
+    "authorUrl": "https://www.curseforge.com/members/lysine/projects",      
+    "curseforgeId": "lysine"
+  },
+  {
+    "ticker": "TAL",
+    "name": "talrey",
+    "authorUrl": "https://www.curseforge.com/members/talrey/projects",      
+    "curseforgeId": "talrey"
+  },
+  {
+    "ticker": "KAY",
+    "name": "Kayladillo",
+    "authorUrl": "https://www.curseforge.com/members/kayladillo/projects",  
+    "curseforgeId": "kayladillo"
+  },
+  {
+    "ticker": "RDH",
+    "name": "rdh",
+    "authorUrl": "https://www.curseforge.com/members/rdh/projects",
+    "curseforgeId": "rdh"
+  },
+  {
+    "ticker": "A0A",
+    "name": "a0a7",
+    "authorUrl": "https://www.curseforge.com/members/a0a7/projects",        
+    "curseforgeId": "a0a7"
+  },
+  {
+    "ticker": "BEN",
+    "name": "Bennyboy1695",
+    "authorUrl": "https://www.curseforge.com/members/bennyboy1695/projects",
+    "curseforgeId": "bennyboy1695"
+  },
+  {
+    "ticker": "RED",
+    "name": "Redcat",
+    "authorUrl": "https://www.curseforge.com/members/redcat/projects",      
+    "curseforgeId": "redcat"
+  },
+  {
+    "ticker": "SUP",
+    "name": "SuperMartijn642",
+    "authorUrl": "https://www.curseforge.com/members/supermartijn642/projects",
+    "curseforgeId": "supermartijn642"
+  },
+  {
+    "ticker": "NUL",
+    "name": "nullBlade",
+    "authorUrl": "https://www.curseforge.com/members/nullblade/projects",   
+    "curseforgeId": "nullblade"
+  },
+  {
+    "ticker": "TAL",
+    "name": "talstoj",
+    "authorUrl": "https://www.curseforge.com/members/talstoj/projects",     
+    "curseforgeId": "talstoj"
+  },
+  {
+    "ticker": "TRO",
+    "name": "tropheusj",
+    "authorUrl": "https://www.curseforge.com/members/tropheusj/projects",   
+    "curseforgeId": "tropheusj"
+  },
+  {
+    "ticker": "LUN",
+    "name": "Luna",
+    "authorUrl": "https://www.curseforge.com/members/luna/projects",        
+    "curseforgeId": "luna"
+  },
+  {
+    "ticker": "TOM",
+    "name": "tom54541",
+    "authorUrl": "https://www.curseforge.com/members/tom54541/projects",    
+    "curseforgeId": "tom54541"
+  },
+  {
+    "ticker": "NOC",
+    "name": "nocubeyt",
+    "authorUrl": "https://www.curseforge.com/members/nocubeyt/projects",    
+    "curseforgeId": "nocubeyt"
+  },
+  {
+    "ticker": "RBA",
+    "name": "rbasamoyai",
+    "authorUrl": "https://www.curseforge.com/members/rbasamoyai/projects",  
+    "curseforgeId": "rbasamoyai"
+  },
+  {
+    "ticker": "DRM",
+    "name": "Dr_Mango_Tea",
+    "authorUrl": "https://www.curseforge.com/members/dr_mango_tea/projects",
+    "curseforgeId": "dr_mango_tea"
+  },
+  {
+    "ticker": "OIE",
+    "name": "oierbravo",
+    "authorUrl": "https://www.curseforge.com/members/oierbravo/projects",   
+    "curseforgeId": "oierbravo"
+  },
+  {
+    "ticker": "QUI",
+    "name": "quickqwek",
+    "authorUrl": "https://www.curseforge.com/members/quickqwek/projects",   
+    "curseforgeId": "quickqwek"
+  },
+  {
+    "ticker": "ELO",
+    "name": "ElocinDev",
+    "authorUrl": "https://www.curseforge.com/members/elocindev/projects",   
+    "curseforgeId": "elocindev"
+  },
+  {
+    "ticker": "EMB",
+    "name": "embeddedt",
+    "authorUrl": "https://www.curseforge.com/members/embeddedt/projects",   
+    "curseforgeId": "embeddedt"
   }
 ]

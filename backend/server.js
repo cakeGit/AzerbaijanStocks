@@ -554,6 +554,29 @@ app.get('/api/stocks', async (req, res) => {
   try {
     const authors = await readJsonFile(AUTHORS_FILE, []);
     const history = await readJsonFile(HISTORY_FILE, {});
+    const users = await readJsonFile(USERS_FILE, []);
+    
+    // Aggregate holdings by ticker across all users
+    const holdingsByTicker = new Map();
+    
+    for (const user of users) {
+      // Check holdings array
+      if (user.holdings && Array.isArray(user.holdings)) {
+        for (const holding of user.holdings) {
+          const ticker = holding.ticker;
+          const shares = holding.shares || 0;
+          holdingsByTicker.set(ticker, (holdingsByTicker.get(ticker) || 0) + shares);
+        }
+      }
+      
+      // Check legacy shares format
+      if (user.shares && typeof user.shares === 'object') {
+        for (const [ticker, shares] of Object.entries(user.shares)) {
+          const shareCount = parseInt(shares) || 0;
+          holdingsByTicker.set(ticker, (holdingsByTicker.get(ticker) || 0) + shareCount);
+        }
+      }
+    }
     
     const stocks = authors.map((author) => {
       const { ticker, name, authorUrl, curseforgeId } = author;
@@ -585,6 +608,9 @@ app.get('/api/stocks', async (req, res) => {
         }
       }
       
+      // Get total shares owned by all users
+      const totalSharesOwned = holdingsByTicker.get(ticker) || 0;
+      
       return {
         ticker,
         name,
@@ -593,7 +619,8 @@ app.get('/api/stocks', async (req, res) => {
         price: parseFloat(price.toFixed(2)),
         change: parseFloat(change.toFixed(2)),
         volume: volume,
-        dataSource
+        dataSource,
+        totalSharesOwned
       };
     });
     

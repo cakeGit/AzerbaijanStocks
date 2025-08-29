@@ -10,6 +10,7 @@ import Portfolio from './pages/Portfolio';
 import Leaderboard from './pages/Leaderboard';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import Landing from './pages/Landing';
 import EmbedTicker from './pages/embed/EmbedTicker';
 import EmbedSwiper from './pages/embed/EmbedSwiper';
 import EmbedCondensed from './pages/embed/EmbedCondensed';
@@ -22,6 +23,7 @@ function App() {
           <Routes>
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/landing" element={<Landing />} />
             <Route path="/embed/ticker" element={<EmbedTicker />} />
             <Route path="/embed/swiper" element={<EmbedSwiper />} />
             <Route path="/embed/condensed" element={<EmbedCondensed />} />

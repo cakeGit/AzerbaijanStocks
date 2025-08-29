@@ -20,6 +20,9 @@ const StockRow = memo(({ stock, isDarkMode, onQuickTrade, ownedShares }) => {
     }
   }, [stock.price, stock.change, price, change]);
 
+  // Calculate shares owned by others (total owned minus user's shares)
+  const othersShares = Math.max(0, (stock.totalSharesOwned || 0) - (ownedShares || 0));
+
   return (
     <tr className="hover:bg-accent/50 transition-colors">
       <td className="px-6 py-4 whitespace-nowrap">
@@ -59,6 +62,11 @@ const StockRow = memo(({ stock, isDarkMode, onQuickTrade, ownedShares }) => {
       <td className="px-6 py-4 whitespace-nowrap text-center">
         <div className={`text-sm ${ownedShares > 0 ? 'text-foreground' : 'text-muted-foreground'}`}>
           {ownedShares > 0 ? formatNumber(ownedShares) : '-'}
+        </div>
+      </td>
+      <td className="px-6 py-4 whitespace-nowrap text-center">
+        <div className={`text-sm ${othersShares > 0 ? 'text-foreground' : 'text-muted-foreground'}`}>
+          {othersShares > 0 ? formatNumber(othersShares) : '-'}
         </div>
       </td>
       <td className="px-6 py-4 whitespace-nowrap text-center">
@@ -155,6 +163,9 @@ const StocksTable = ({ stocks, loading, userId }) => {
                   You Own
                 </th>
                 <th className="px-6 py-3 text-center text-xs font-medium uppercase tracking-wider text-muted-foreground">
+                  Others Own
+                </th>
+                <th className="px-6 py-3 text-center text-xs font-medium uppercase tracking-wider text-muted-foreground">
                   Actions
                 </th>
               </tr>
@@ -162,7 +173,7 @@ const StocksTable = ({ stocks, loading, userId }) => {
             <tbody className="bg-card divide-y divide-border">
               {stocks.map((stock) => (
                 <StockRow
-                  key={stock.ticker}
+                  key={stock.curseforgeId}
                   stock={stock}
                   isDarkMode={isDarkMode}
                   onQuickTrade={handleQuickTrade}
