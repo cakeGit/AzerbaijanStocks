@@ -93,3 +93,4 @@ Thumbs.db
 data/*.backup
 data/*.bak
 
+data/users.json
