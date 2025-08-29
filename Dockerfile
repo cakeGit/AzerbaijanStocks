@@ -27,6 +27,7 @@ COPY --from=backend-build /app/backend ./backend
 COPY --from=frontend-build /app/frontend/dist ./frontend/dist
 # Copy data directory
 COPY data ./data
+VOLUME ["/app/data"]
 
 EXPOSE 3001
 

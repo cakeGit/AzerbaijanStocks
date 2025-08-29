@@ -36,8 +36,8 @@ app.use(express.json());
 
 // Serve static files from React build (for production)
 if (process.env.NODE_ENV === 'production') {
-  const frontendBuildPath = path.join(__dirname, '..', 'frontend', 'build');
-  app.use(express.static(frontendBuildPath));
+  const frontendDistPath = path.join(__dirname, '..', 'frontend', 'dist');
+  app.use(express.static(frontendDistPath));
 }
 
 // Data file paths
@@ -1932,7 +1932,7 @@ app.get('/api/config', (req, res) => {
 // Serve React app for all non-API routes (must be last)
 if (process.env.NODE_ENV === 'production') {
   app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '..', 'frontend', 'build', 'index.html'));
+    res.sendFile(path.join(__dirname, '..', 'frontend', 'dist', 'index.html'));
   });
 }
 
