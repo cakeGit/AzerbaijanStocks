@@ -24,7 +24,7 @@ ENV PORT=3001
 # Copy backend with dependencies
 COPY --from=backend-build /app/backend ./backend
 # Copy frontend build
-COPY --from=frontend-build /app/frontend/build ./frontend/build
+COPY --from=frontend-build /app/frontend/dist ./frontend/dist
 # Copy data directory
 COPY data ./data
 
