@@ -54,7 +54,7 @@ const Leaderboard = () => {
       case 2:
         return <TrophyIcon className="h-6 w-6 text-muted-foreground" />;
       case 3:
-        return <TrophyIcon className="h-6 w-6 text-yellow-700" />;
+        return <TrophyIcon className="h-6 w-6 text-amber-600 dark:text-amber-400" />;
       default:
         return (
           <div className="h-6 w-6 rounded-xs bg-muted flex items-center justify-center">
@@ -96,15 +96,15 @@ const Leaderboard = () => {
 
           {/* 1st Place */}
           <div className="order-2 md:order-2">
-            <div className="bg-yellow-50 rounded-xs p-6 text-center border border-yellow-200">
+            <div className="bg-yellow-50 dark:bg-yellow-900/20 rounded-xs p-6 text-center border border-yellow-200 dark:border-yellow-800">
               <div className="flex justify-center mb-3">
-                <TrophyIcon className="h-16 w-16 text-yellow-600" />
+                <TrophyIcon className="h-16 w-16 text-yellow-600 dark:text-yellow-400" />
               </div>
               <h3 className="text-xl font-bold text-foreground mb-1">
                 {leaderboard[0].username}
               </h3>
               <p className="text-sm text-muted-foreground mb-2">#1 Champion</p>
-              <p className="text-2xl font-bold text-yellow-700">
+              <p className="text-2xl font-bold text-yellow-700 dark:text-yellow-300">
                 {formatCurrency(leaderboard[0].netWorth)}
               </p>
             </div>
@@ -112,15 +112,15 @@ const Leaderboard = () => {
 
           {/* 3rd Place */}
           <div className="order-3 md:order-3">
-            <div className="bg-orange-50 rounded-xs p-6 text-center border border-orange-200">
+            <div className="bg-orange-50 dark:bg-orange-900/20 rounded-xs p-6 text-center border border-orange-200 dark:border-orange-800">
               <div className="flex justify-center mb-3">
-                <TrophyIcon className="h-12 w-12 text-orange-600" />
+                <TrophyIcon className="h-12 w-12 text-orange-600 dark:text-orange-400" />
               </div>
               <h3 className="text-lg font-bold text-foreground mb-1">
                 {leaderboard[2].username}
               </h3>
               <p className="text-sm text-muted-foreground mb-2">#3</p>
-              <p className="text-xl font-bold text-orange-700">
+              <p className="text-xl font-bold text-orange-700 dark:text-orange-300">
                 {formatCurrency(leaderboard[2].netWorth)}
               </p>
             </div>

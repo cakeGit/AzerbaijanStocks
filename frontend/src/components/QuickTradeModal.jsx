@@ -13,7 +13,17 @@ const QuickTradeModal = ({ stock, userId, isOpen, onClose }) => {
   useEffect(() => {
     if (isOpen) {
       fetchUserData();
+      // Prevent body scroll when modal is open
+      document.body.style.overflow = 'hidden';
+    } else {
+      // Restore body scroll when modal is closed
+      document.body.style.overflow = 'unset';
     }
+
+    // Cleanup on unmount
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
   }, [isOpen, userId]);
 
   const fetchUserData = async () => {
@@ -69,8 +79,8 @@ const QuickTradeModal = ({ stock, userId, isOpen, onClose }) => {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" style={{ margin: 0 }}>
-      <div className="bg-background border border-border rounded-lg max-w-md w-full max-h-[90vh] overflow-y-auto shadow-xl">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-[60] p-4" style={{ margin: 0 }}>
+      <div className="bg-background border border-border rounded-lg max-w-md w-full max-h-[90vh] overflow-y-auto shadow-xl relative z-10">
         <div className="flex justify-between items-center p-6 border-b border-border bg-muted/50">
           <h2 className="text-lg font-semibold text-foreground">
             Quick Trade - {stock.ticker}
@@ -115,12 +125,12 @@ const QuickTradeModal = ({ stock, userId, isOpen, onClose }) => {
                   ${userData.cash.toFixed(2)}
                 </div>
               </div>
-              <div className="p-3 bg-green-50 rounded-xs border border-green-200">
+              <div className="p-3 bg-accent/50 rounded-xs border border-accent">
                 <div className="flex items-center text-sm mb-1 text-muted-foreground">
-                  <FaChartLine className="mr-1 text-green-600" />
+                  <FaChartLine className="mr-1 text-accent-foreground" />
                   Current Shares
                 </div>
-                <div className="font-semibold text-green-700">
+                <div className="font-semibold text-accent-foreground">
                   {currentShares} shares
                 </div>
               </div>
@@ -201,7 +211,7 @@ const QuickTradeModal = ({ stock, userId, isOpen, onClose }) => {
           )}
 
           {success && (
-            <div className="mb-4 p-3 border border-green-600 bg-green-50 rounded-xs text-green-700">
+            <div className="mb-4 p-3 border border-accent bg-accent/10 rounded-xs text-accent-foreground">
               <div className="text-sm">{success}</div>
             </div>
           )}

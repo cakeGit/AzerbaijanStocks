@@ -92,5 +92,5 @@ Thumbs.db
 # Keep data files but ignore backups
 data/*.backup
 data/*.bak
-
+data/history.json
 data/users.json
