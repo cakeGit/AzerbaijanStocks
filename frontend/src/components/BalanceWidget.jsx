@@ -1,4 +1,4 @@
-import React, { useState, useEffect, memo } from 'react';
+import React, { useState, useEffect, memo, useMemo } from 'react';
 import { FaCoins, FaChartLine, FaWallet, FaClock } from 'react-icons/fa';
 import { useAuth } from '../contexts/AuthContext';
 import { useTheme } from '../contexts/ThemeContext';
@@ -76,44 +76,50 @@ const BalanceWidget = memo(({ pendingTransactions = [] }) => {
   const hasPositiveChange = pendingCashChange > 0;
   const hasNegativeChange = pendingCashChange < 0;
 
-  const views = userData ? [
-    // View 1: Cash Balance
-    {
-      icon: <FaCoins className="text-yellow-500" />,
-      label: 'Cash',
-      value: `$${userData.cash.toFixed(2)}`,
-      subValue: pendingCashChange !== 0 ? `${hasPositiveChange ? '+' : ''}$${pendingCashChange.toFixed(2)}` : null,
-      color: 'text-green-600'
-    },
-    // View 2: Portfolio Value
-    {
-      icon: <FaChartLine className="text-accent-foreground" />,
-      label: 'Stocks',
-      value: `$${portfolioValue.toFixed(2)}`,
-      subValue: null,
-      color: 'text-accent-foreground'
-    },
-    // View 3: Total Wealth
-    {
-      icon: <span className="text-purple-500 text-lg">🤑</span>,
-      label: 'Total',
-      value: `$${totalWealth.toFixed(2)}`,
-      subValue: pendingCashChange !== 0 ? `→ $${(totalWealth + pendingCashChange).toFixed(2)}` : null,
-      color: 'text-foreground'
-    },
-    // View 4: Pending Transactions (only if there are any)
-    ...(pendingTransactions.length > 0 ? [{
-      icon: <FaClock className="text-orange-500" />,
-      label: 'Pending',
-      value: `${pendingTransactions.length} transaction${pendingTransactions.length > 1 ? 's' : ''}`,
-      subValue: null,
-      color: 'text-orange-600'
-    }] : [])
-  ] : [];
+  const views = useMemo(() => {
+    if (!userData) return [];
+
+    const hasPositiveChange = pendingCashChange > 0;
+
+    return [
+      // View 1: Cash Balance
+      {
+        icon: <FaCoins className="text-yellow-500" />,
+        label: 'Cash',
+        value: `$${userData.cash.toFixed(2)}`,
+        subValue: pendingCashChange !== 0 ? `${hasPositiveChange ? '+' : ''}$${pendingCashChange.toFixed(2)}` : null,
+        color: 'text-green-600'
+      },
+      // View 2: Portfolio Value
+      {
+        icon: <FaChartLine className="text-accent-foreground" />,
+        label: 'Stocks',
+        value: `$${portfolioValue.toFixed(2)}`,
+        subValue: null,
+        color: 'text-accent-foreground'
+      },
+      // View 3: Total Wealth
+      {
+        icon: <span className="text-purple-500 text-lg">🤑</span>,
+        label: 'Total',
+        value: `$${totalWealth.toFixed(2)}`,
+        subValue: pendingCashChange !== 0 ? `→ $${(totalWealth + pendingCashChange).toFixed(2)}` : null,
+        color: 'text-foreground'
+      },
+      // View 4: Pending Transactions (only if there are any)
+      ...(pendingTransactions.length > 0 ? [{
+        icon: <FaClock className="text-orange-500" />,
+        label: 'Pending',
+        value: `${pendingTransactions.length} transaction${pendingTransactions.length > 1 ? 's' : ''}`,
+        subValue: null,
+        color: 'text-orange-600'
+      }] : [])
+    ];
+  }, [userData, portfolioValue, pendingCashChange, pendingTransactions.length, totalWealth]);
 
   // Cycle through different views
   useEffect(() => {
-    if (views.length === 0) return;
+    if (views.length <= 1) return;
 
     const viewInterval = setInterval(() => {
       setCurrentView((prev) => (prev + 1) % views.length);

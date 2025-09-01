@@ -36,7 +36,8 @@ const QuickTradeModal = ({ stock, userId, isOpen, onClose }) => {
   };
 
   const totalCost = quantity * stock.price;
-  const currentShares = userData?.shares[stock.ticker] || 0;
+  const currentShares = userData?.shares?.[stock.ticker] || 
+    (userData?.holdings?.find(h => h.ticker === stock.ticker)?.shares || 0);
   const maxBuyQuantity = Math.floor(userData?.cash / stock.price) || 0;
   const maxSellQuantity = currentShares;
 

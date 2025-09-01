@@ -94,3 +94,4 @@ data/*.backup
 data/*.bak
 data/history.json
 data/users.json
+data/backups

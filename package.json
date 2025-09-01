@@ -2,6 +2,7 @@
   "name": "azt-stock-exchange",
   "version": "1.0.0",
   "description": "AZT Stock Exchange Simulator - A semi-serious stock exchange simulator for Minecraft mod authors",
+  "type": "module",
   "main": "index.js",
   "scripts": {
     "install:all": "npm install && cd backend && npm install && cd ../frontend && npm install",
@@ -15,6 +16,11 @@
     "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
     "test:backend": "cd backend && npm test",
     "test:frontend": "cd frontend && npm test",
+    "analyze": "node stock-analyzer.js",
+    "predict": "node stock-analyzer.js predict",
+    "backup": "node backup.js",
+    "backup:list": "node backup.js list",
+    "backup:cleanup": "node backup.js cleanup",
     "docker:build": "docker build -t azt-stock-exchange .",
     "docker:run": "docker run -p 3001:3001 -v ./data:/app/data azt-stock-exchange",
     "docker:compose": "docker-compose up -d",
@@ -41,6 +47,7 @@
   },
   "homepage": "https://github.com/azt-organisation/stock-exchange#readme",
   "devDependencies": {
+    "axios": "^1.6.0",
     "concurrently": "^8.2.0"
   },
   "engines": {

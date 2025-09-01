@@ -1,6 +1,31 @@
 const fs = require('fs').promises;
 const path = require('path');
 
+async function writeJsonFile(filePath, data) {
+  try {
+    // Create atomic write by writing to temp file first
+    const tempFile = `${filePath}.tmp`;
+    const jsonString = JSON.stringify(data, null, 2);
+    
+    // Write to temp file
+    await fs.writeFile(tempFile, jsonString);
+    
+    // Atomic move (rename) to final location
+    await fs.rename(tempFile, filePath);
+    
+    console.log(`Successfully wrote ${filePath}`);
+  } catch (error) {
+    console.error(`Failed to write ${filePath}:`, error.message);
+    // Clean up temp file if it exists
+    try {
+      await fs.unlink(`${filePath}.tmp`);
+    } catch (cleanupError) {
+      // Ignore cleanup errors
+    }
+    throw error;
+  }
+}
+
 async function generateHistoricalData() {
   const dataDir = path.join(__dirname, 'data');
   const historyFile = path.join(dataDir, 'history.json');
@@ -84,7 +109,7 @@ async function generateHistoricalData() {
   }
 
   // Write back to file
-  await fs.writeFile(historyFile, JSON.stringify(existingHistory, null, 2));
+  await writeJsonFile(historyFile, existingHistory);
 }
 
 // Run the script

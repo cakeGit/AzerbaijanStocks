@@ -12,6 +12,7 @@ const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const DiscordStrategy = require('passport-discord').Strategy;
 const GitHubStrategy = require('passport-github2').Strategy;
+const { convertDownloadsToPrice } = require('../utils/priceCalculator.cjs');
 require('dotenv').config();
 
 const app = express();
@@ -20,6 +21,9 @@ const TESTING_MODE = process.env.TESTING_MODE === 'TRUE';
 const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key-change-in-production';
 const ALTERNATE_SIGNINS = process.env.ALTERNATE_SIGNINS === 'TRUE';
 const DATA_DIR = path.join(__dirname, '..', 'data');
+
+// Game server
+const gameServer = require('./gameServer');
 
 // Middleware
 app.use(helmet({
@@ -31,8 +35,13 @@ app.use(cors({
     : ['http://localhost:3000', 'http://127.0.0.1:3000'],
   credentials: true
 }));
-app.use(morgan('combined'));
+app.use(morgan('combined', {
+  skip: () => true
+}));
 app.use(express.json());
+
+// Game routes
+app.use('/api/games', gameServer);
 
 // Serve static files from React build (for production)
 if (process.env.NODE_ENV === 'production') {
@@ -44,6 +53,92 @@ if (process.env.NODE_ENV === 'production') {
 const AUTHORS_FILE = path.join(DATA_DIR, 'authors.json');
 const HISTORY_FILE = path.join(DATA_DIR, 'history.json');
 const USERS_FILE = path.join(DATA_DIR, 'users.json');
+const BACKUP_DIR = path.join(DATA_DIR, 'backups');
+
+// Ensure backup directory exists
+async function ensureBackupDir() {
+  try {
+    await fs.mkdir(BACKUP_DIR, { recursive: true });
+  } catch (error) {
+    console.warn('Failed to create backup directory:', error.message);
+  }
+}
+
+// Create backup of data files
+async function createBackup() {
+  try {
+    await ensureBackupDir();
+    
+    const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+    const backupFiles = [
+      { source: AUTHORS_FILE, target: path.join(BACKUP_DIR, `authors-${timestamp}.json`) },
+      { source: HISTORY_FILE, target: path.join(BACKUP_DIR, `history-${timestamp}.json`) },
+      { source: USERS_FILE, target: path.join(BACKUP_DIR, `users-${timestamp}.json`) }
+    ];
+    
+    for (const { source, target } of backupFiles) {
+      try {
+        // Check if source file exists
+        await fs.access(source);
+        // Copy file
+        await fs.copyFile(source, target);
+        console.log(`Created backup: ${path.basename(target)}`);
+      } catch (error) {
+        console.warn(`Failed to backup ${source}:`, error.message);
+      }
+    }
+    
+    // Clean up old backups (older than 7 days)
+    await cleanupOldBackups();
+    
+  } catch (error) {
+    console.error('Error creating backup:', error);
+  }
+}
+
+// Find latest backup for a file
+async function findLatestBackup(filePath) {
+  try {
+    const fileName = path.basename(filePath, '.json');
+    const files = await fs.readdir(BACKUP_DIR);
+    
+    const backupFiles = files
+      .filter(f => f.startsWith(`${fileName}-`) && f.endsWith('.json'))
+      .sort()
+      .reverse(); // Most recent first
+    
+    if (backupFiles.length > 0) {
+      return path.join(BACKUP_DIR, backupFiles[0]);
+    }
+  } catch (error) {
+    console.warn('Error finding backup files:', error.message);
+  }
+  return null;
+}
+
+// Clean up backups older than 7 days
+async function cleanupOldBackups() {
+  try {
+    const files = await fs.readdir(BACKUP_DIR);
+    const now = Date.now();
+    const sevenDaysMs = 7 * 24 * 60 * 60 * 1000;
+    
+    for (const file of files) {
+      const filePath = path.join(BACKUP_DIR, file);
+      try {
+        const stats = await fs.stat(filePath);
+        if (now - stats.mtime.getTime() > sevenDaysMs) {
+          await fs.unlink(filePath);
+          console.log(`Cleaned up old backup: ${file}`);
+        }
+      } catch (error) {
+        console.warn(`Failed to check/cleanup ${file}:`, error.message);
+      }
+    }
+  } catch (error) {
+    console.warn('Error cleaning up backups:', error.message);
+  }
+}
 
 // Global cache for external authors data
 let externalAuthorsCache = null;
@@ -84,18 +179,55 @@ async function fetchExternalAuthorsData() {
 async function readJsonFile(filePath, defaultValue = []) {
   try {
     const data = await fs.readFile(filePath, 'utf8');
-    return JSON.parse(data);
+    const parsed = JSON.parse(data);
+    // Validate that the parsed data is not corrupted
+    if (typeof parsed !== 'object' || parsed === null) {
+      console.error(`Invalid JSON structure in ${filePath}, using default value`);
+      return defaultValue;
+    }
+    return parsed;
   } catch (error) {
     console.warn(`Failed to read ${filePath}:`, error.message);
+    // Try to recover from backup if main file is corrupted
+    const backupPath = await findLatestBackup(filePath);
+    if (backupPath) {
+      try {
+        console.log(`Attempting to recover from backup: ${backupPath}`);
+        const backupData = await fs.readFile(backupPath, 'utf8');
+        const parsed = JSON.parse(backupData);
+        // Restore from backup
+        await writeJsonFile(filePath, parsed);
+        console.log(`Successfully recovered ${filePath} from backup`);
+        return parsed;
+      } catch (backupError) {
+        console.error(`Failed to recover from backup: ${backupError.message}`);
+      }
+    }
     return defaultValue;
   }
 }
 
 async function writeJsonFile(filePath, data) {
   try {
-    await fs.writeFile(filePath, JSON.stringify(data, null, 2));
+    // Create atomic write by writing to temp file first
+    const tempFile = `${filePath}.tmp`;
+    const jsonString = JSON.stringify(data, null, 2);
+    
+    // Write to temp file
+    await fs.writeFile(tempFile, jsonString);
+    
+    // Atomic move (rename) to final location
+    await fs.rename(tempFile, filePath);
+    
+    console.log(`Successfully wrote ${filePath}`);
   } catch (error) {
     console.error(`Failed to write ${filePath}:`, error.message);
+    // Clean up temp file if it exists
+    try {
+      await fs.unlink(`${filePath}.tmp`);
+    } catch (cleanupError) {
+      // Ignore cleanup errors
+    }
     throw error;
   }
 }
@@ -480,9 +612,38 @@ function generateRandomDownloads() {
   return Math.floor(Math.random() * 4000) + 1000; // 1000-5000
 }
 
-function convertDownloadsToPrice(downloads) {
-  // Simple conversion: downloads / 10 as base price
-  return Math.max(1, downloads / 10);
+// Calculate average price of stocks with real data
+async function getAverageStockPrice() {
+  try {
+    const authors = await readJsonFile(AUTHORS_FILE, []);
+    const history = await readJsonFile(HISTORY_FILE, {});
+
+    let totalPrice = 0;
+    let count = 0;
+
+    for (const author of authors) {
+      const { ticker } = author;
+      const stockHistory = history[ticker] || [];
+
+      if (stockHistory.length > 0) {
+        // Check if this stock has real data
+        const hasRealData = stockHistory.some(entry => entry.dataSource === 'statistics');
+        if (hasRealData) {
+          const latestPrice = stockHistory[stockHistory.length - 1].price;
+          if (latestPrice && !isNaN(latestPrice) && isFinite(latestPrice)) {
+            totalPrice += latestPrice;
+            count++;
+          }
+        }
+      }
+    }
+
+    // Return average price, or default to 100 if no real data available
+    return count > 0 ? totalPrice / count : 100;
+  } catch (error) {
+    console.warn('Error calculating average stock price:', error.message);
+    return 100;
+  }
 }
 
 // Fetch external API data (placeholder for real API)
@@ -521,29 +682,29 @@ async function fetchExternalData(authorUrl, curseforgeId) {
 // Generate stock price with fallbacks
 async function generateStockPrice(ticker, currentPrice = 100, authorUrl = null, curseforgeId = null) {
   const externalData = await fetchExternalData(authorUrl, curseforgeId);
-  
+
   let price, change, volume;
-  
+
   if (externalData && externalData[curseforgeId]) {
     // Use real API data
     const authorStats = externalData[curseforgeId];
-    const downloads = authorStats.downloads;
-    price = convertDownloadsToPrice(downloads);
+    price = convertDownloadsToPrice(authorStats.downloads, authorStats.downloadRate || 0);
     change = price - currentPrice;
-    volume = Math.floor(downloads / 100);
+    volume = Math.floor(authorStats.downloads / 100);
   } else if (TESTING_MODE) {
     // Generate random data for testing
     const downloads = generateRandomDownloads();
-    price = convertDownloadsToPrice(downloads);
+    price = convertDownloadsToPrice(downloads, downloads * 0.1); // Simulate download rate
     change = price - currentPrice;
     volume = Math.floor(downloads / 100);
   } else {
-    // Default fallback
-    price = currentPrice || 100;
+    // Default fallback - use average price instead of current price
+    const averagePrice = await getAverageStockPrice();
+    price = averagePrice;
     change = 0;
     volume = 0;
   }
-  
+
   return { price: parseFloat(price.toFixed(2)), change: parseFloat(change.toFixed(2)), volume };
 }
 
@@ -667,7 +828,7 @@ app.get('/api/stocks/:ticker/history', async (req, res) => {
 
           if (externalData && externalData[author.curseforgeId]) {
             const authorStats = externalData[author.curseforgeId];
-            const basePrice = convertDownloadsToPrice(authorStats.downloads);
+            const basePrice = convertDownloadsToPrice(authorStats.downloads, authorStats.downloadRate || 0);
 
             // Generate 30 days of history based on real data
             stockHistory = [];
@@ -913,6 +1074,14 @@ app.get('/api/user/:userId', authenticateToken, async (req, res) => {
       await writeJsonFile(USERS_FILE, users);
     }
     
+    // Sync shares object with holdings for backward compatibility
+    if (user.holdings && user.holdings.length > 0 && (!user.shares || Object.keys(user.shares).length === 0)) {
+      user.shares = {};
+      for (const holding of user.holdings) {
+        user.shares[holding.ticker] = holding.shares;
+      }
+    }
+    
     res.json({
       id: user.id,
       username: user.username,
@@ -976,23 +1145,57 @@ app.post('/api/buy', authenticateToken, async (req, res) => {
     
     user.shares[ticker] = (user.shares[ticker] || 0) + quantity;
     
+    // Update holdings array
+    if (!user.holdings) {
+      user.holdings = [];
+    }
+    
+    const existingHolding = user.holdings.find(h => h.ticker === ticker);
+    if (existingHolding) {
+      existingHolding.shares += quantity;
+    } else {
+      user.holdings.push({ ticker, shares: quantity });
+    }
+    
     // Recalculate net worth using current market prices
     let holdingsValue = 0;
-    for (const [stockTicker, shareCount] of Object.entries(user.shares)) {
-      const stockHistory = history[stockTicker] || [];
-      let currentPrice = 100; // Default price
-      
-      if (stockHistory.length > 0) {
-        for (let i = stockHistory.length - 1; i >= 0; i--) {
-          const entry = stockHistory[i];
-          if (entry.price && !isNaN(entry.price) && isFinite(entry.price)) {
-            currentPrice = entry.price;
-            break;
+    
+    // Calculate from holdings array (new format)
+    if (user.holdings && user.holdings.length > 0) {
+      for (const holding of user.holdings) {
+        const stockHistory = history[holding.ticker] || [];
+        let currentPrice = 100; // Default price
+        
+        if (stockHistory.length > 0) {
+          for (let i = stockHistory.length - 1; i >= 0; i--) {
+            const entry = stockHistory[i];
+            if (entry.price && !isNaN(entry.price) && isFinite(entry.price)) {
+              currentPrice = entry.price;
+              break;
+            }
           }
         }
+        
+        holdingsValue += holding.shares * currentPrice;
       }
-      
-      holdingsValue += shareCount * currentPrice;
+    } else if (user.shares) {
+      // Fallback to shares format if holdings is empty
+      for (const [stockTicker, shareCount] of Object.entries(user.shares)) {
+        const stockHistory = history[stockTicker] || [];
+        let currentPrice = 100; // Default price
+        
+        if (stockHistory.length > 0) {
+          for (let i = stockHistory.length - 1; i >= 0; i--) {
+            const entry = stockHistory[i];
+            if (entry.price && !isNaN(entry.price) && isFinite(entry.price)) {
+              currentPrice = entry.price;
+              break;
+            }
+          }
+        }
+        
+        holdingsValue += shareCount * currentPrice;
+      }
     }
     
     user.netWorth = parseFloat((user.cash + holdingsValue).toFixed(2));
@@ -1055,36 +1258,81 @@ app.post('/api/sell', authenticateToken, async (req, res) => {
     
     const user = users[userIndex];
     
-    if (!user.shares || !user.shares[ticker] || user.shares[ticker] < quantity) {
+    // Get current shares from either format
+    let currentShares = 0;
+    if (user.shares && user.shares[ticker]) {
+      currentShares = user.shares[ticker];
+    } else if (user.holdings) {
+      const holding = user.holdings.find(h => h.ticker === ticker);
+      if (holding) {
+        currentShares = holding.shares;
+      }
+    }
+    
+    if (currentShares < quantity) {
       return res.status(400).json({ error: 'Insufficient shares' });
     }
     
     // Process transaction
     user.cash = parseFloat((user.cash + totalRevenue).toFixed(2));
-    user.shares[ticker] -= quantity;
     
-    // Remove ticker if no shares left
-    if (user.shares[ticker] === 0) {
-      delete user.shares[ticker];
+    // Update shares in both formats
+    if (user.shares && user.shares[ticker]) {
+      user.shares[ticker] -= quantity;
+      if (user.shares[ticker] === 0) {
+        delete user.shares[ticker];
+      }
+    }
+    
+    if (user.holdings) {
+      const holding = user.holdings.find(h => h.ticker === ticker);
+      if (holding) {
+        holding.shares -= quantity;
+        if (holding.shares === 0) {
+          user.holdings = user.holdings.filter(h => h.ticker !== ticker);
+        }
+      }
     }
     
     // Recalculate net worth using current market prices
     let holdingsValue = 0;
-    for (const [stockTicker, shareCount] of Object.entries(user.shares)) {
-      const stockHistory = history[stockTicker] || [];
-      let currentPrice = 100; // Default price
-      
-      if (stockHistory.length > 0) {
-        for (let i = stockHistory.length - 1; i >= 0; i--) {
-          const entry = stockHistory[i];
-          if (entry.price && !isNaN(entry.price) && isFinite(entry.price)) {
-            currentPrice = entry.price;
-            break;
+    
+    // Calculate from holdings array (new format)
+    if (user.holdings && user.holdings.length > 0) {
+      for (const holding of user.holdings) {
+        const stockHistory = history[holding.ticker] || [];
+        let currentPrice = 100; // Default price
+        
+        if (stockHistory.length > 0) {
+          for (let i = stockHistory.length - 1; i >= 0; i--) {
+            const entry = stockHistory[i];
+            if (entry.price && !isNaN(entry.price) && isFinite(entry.price)) {
+              currentPrice = entry.price;
+              break;
+            }
           }
         }
+        
+        holdingsValue += holding.shares * currentPrice;
       }
-      
-      holdingsValue += shareCount * currentPrice;
+    } else if (user.shares) {
+      // Fallback to shares format if holdings is empty
+      for (const [stockTicker, shareCount] of Object.entries(user.shares)) {
+        const stockHistory = history[stockTicker] || [];
+        let currentPrice = 100; // Default price
+        
+        if (stockHistory.length > 0) {
+          for (let i = stockHistory.length - 1; i >= 0; i--) {
+            const entry = stockHistory[i];
+            if (entry.price && !isNaN(entry.price) && isFinite(entry.price)) {
+              currentPrice = entry.price;
+              break;
+            }
+          }
+        }
+        
+        holdingsValue += shareCount * currentPrice;
+      }
     }
     
     user.netWorth = parseFloat((user.cash + holdingsValue).toFixed(2));
@@ -1634,8 +1882,17 @@ app.get('/api/auth/session', (req, res) => {
   res.json({ user: null }); // OAuth users get JWT tokens instead
 });
 
-// Market simulation - runs every 1 minute with enhanced trends
-cron.schedule('* * * * *', async () => {
+// Schedule backups every 12 hours
+cron.schedule('0 */12 * * *', async () => {
+  console.log('Running scheduled backup...');
+  await createBackup();
+});
+
+// Also run initial backup on startup
+setTimeout(async () => {
+  console.log('Creating initial backup...');
+  await createBackup();
+  
   // console.log('Running enhanced market simulation...');
   
   try {
@@ -1674,21 +1931,21 @@ cron.schedule('* * * * *', async () => {
       // Try to get real data from external API
       let realPrice = null;
       let realVolume = null;
-      
+
       try {
         const externalData = await fetchExternalData(authorUrl, curseforgeId);
         if (externalData && externalData[curseforgeId]) {
           const authorStats = externalData[curseforgeId];
-          realPrice = convertDownloadsToPrice(authorStats.downloads);
+          realPrice = convertDownloadsToPrice(authorStats.downloads, authorStats.downloadRate || 0);
           realVolume = Math.floor(authorStats.downloads / 100);
         }
       } catch (error) {
         console.warn(`Failed to fetch real data for ${ticker}:`, error.message);
       }
-      
+
       let newPrice;
       let volume;
-      
+
       if (realPrice !== null) {
         // Gradual price movement towards target price
         const targetPrice = realPrice;
@@ -1714,23 +1971,21 @@ cron.schedule('* * * * *', async () => {
         volume = realVolume;
 
       } else {
-        // Fallback to simulated data
-        // Get download trend from CurseForge ID (simulate with base trend for now)
-        const baseTrend = Math.sin(Date.now() / (1000 * 60 * 60 * 24)) * 0.1; // Daily cycle
-        
-        // Calculate trend-based value: 1000 downloads = 100 stock value
-        const curseforgeIdNum = curseforgeId ? Math.abs(parseInt(curseforgeId) || 1) : 1;
-        const simulatedDownloads = curseforgeIdNum * 1000 + Math.floor(Math.random() * 5000);
-        const downloadTrend = simulatedDownloads / 1000 * 100;
-        const trendInfluence = (downloadTrend / currentPrice) * 0.001; // Small influence based on download ratio
-        
-        // Random walk with trend bias
-        const randomChange = (Math.random() - 0.5) * baseVolatility;
-        const trendBias = baseTrend * 0.005 + trendInfluence;
-        const totalChange = randomChange + trendBias;
-        
-        // Apply price change with bounds check
-        newPrice = Math.max(0.01, currentPrice * (1 + totalChange));
+        // Fallback: use average of other stocks with real data instead of current price
+        const averagePrice = await getAverageStockPrice();
+
+        // If current price is way off from average, gradually move towards average
+        if (Math.abs(currentPrice - averagePrice) > averagePrice * 0.5) {
+          // Large difference - move towards average
+          const direction = averagePrice > currentPrice ? 1 : -1;
+          const adjustment = Math.min(Math.abs(averagePrice - currentPrice) * 0.01, averagePrice * 0.05);
+          newPrice = Math.max(0.01, currentPrice + direction * adjustment);
+        } else {
+          // Small difference - apply normal volatility around current price
+          const randomChange = (Math.random() - 0.5) * baseVolatility;
+          newPrice = Math.max(0.01, currentPrice * (1 + randomChange));
+        }
+
         volume = Math.floor(Math.random() * (isMarketHours ? 10000 : 2000)) + 1000;
       }
       
@@ -1779,9 +2034,7 @@ cron.schedule('* * * * *', async () => {
   } catch (error) {
     console.error('Error in market simulation:', error);
   }
-});
-
-// GET /api/active-traders - Get count of active traders
+}, 5000); // Wait 5 seconds after startup// GET /api/active-traders - Get count of active traders
 app.get('/api/active-traders', async (req, res) => {
   try {
     const users = await readJsonFile(USERS_FILE, []);
@@ -1921,12 +2174,50 @@ app.get('/api/downloads/status', async (req, res) => {
   }
 });
 
-// Configuration endpoint
-app.get('/api/config', (req, res) => {
-  res.json({
-    alternateSignins: ALTERNATE_SIGNINS,
-    testingMode: TESTING_MODE
-  });
+// POST /api/admin/backup - Manually trigger backup
+app.post('/api/admin/backup', async (req, res) => {
+  try {
+    console.log('Manual backup requested...');
+    await createBackup();
+    res.json({ message: 'Backup completed successfully' });
+  } catch (error) {
+    console.error('Error during manual backup:', error);
+    res.status(500).json({ error: 'Failed to create backup' });
+  }
+});
+
+// GET /api/admin/backups - List available backups
+app.get('/api/admin/backups', async (req, res) => {
+  try {
+    const files = await fs.readdir(BACKUP_DIR);
+    const backupInfo = [];
+    
+    for (const file of files) {
+      try {
+        const filePath = path.join(BACKUP_DIR, file);
+        const stats = await fs.stat(filePath);
+        backupInfo.push({
+          filename: file,
+          size: stats.size,
+          created: stats.mtime.toISOString(),
+          age: Math.floor((Date.now() - stats.mtime.getTime()) / (1000 * 60 * 60 * 24)) // days old
+        });
+      } catch (error) {
+        console.warn(`Error getting info for ${file}:`, error.message);
+      }
+    }
+    
+    // Sort by creation date (newest first)
+    backupInfo.sort((a, b) => new Date(b.created) - new Date(a.created));
+    
+    res.json({
+      totalBackups: backupInfo.length,
+      backups: backupInfo
+    });
+  } catch (error) {
+    console.error('Error listing backups:', error);
+    res.status(500).json({ error: 'Failed to list backups' });
+  }
 });
 
 // Serve React app for all non-API routes (must be last)
@@ -1935,6 +2226,18 @@ if (process.env.NODE_ENV === 'production') {
     res.sendFile(path.join(__dirname, '..', 'frontend', 'dist', 'index.html'));
   });
 }
+
+// Schedule backups every 12 hours
+cron.schedule('0 */12 * * *', async () => {
+  console.log('Running scheduled backup...');
+  await createBackup();
+});
+
+// Also run initial backup on startup
+setTimeout(async () => {
+  console.log('Creating initial backup...');
+  await createBackup();
+}, 5000); // Wait 5 seconds after startup
 
 // Start server
 app.listen(PORT, () => {

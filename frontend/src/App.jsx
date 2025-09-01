@@ -8,12 +8,22 @@ import Dashboard from './pages/Dashboard';
 import StockDetail from './pages/StockDetail';
 import Portfolio from './pages/Portfolio';
 import Leaderboard from './pages/Leaderboard';
+import Jobs from './pages/Jobs';
+import Gambling from './pages/Gambling';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Landing from './pages/Landing';
 import EmbedTicker from './pages/embed/EmbedTicker';
 import EmbedSwiper from './pages/embed/EmbedSwiper';
 import EmbedCondensed from './pages/embed/EmbedCondensed';
+import SlotMachine from './components/games/SlotMachine';
+import Blackjack from './components/games/Blackjack';
+import Roulette from './components/games/Roulette';
+import Mines from './components/games/Mines';
+import McKingJob from './components/games/McKingJob';
+import SecretaryJob from './components/games/SecretaryJob';
+import FeatureDisabled from './components/FeatureDisabled';
+import { FEATURE_FLAGS } from './config/features';
 
 function App() {
   return (
@@ -35,6 +45,16 @@ function App() {
                     <Route path="/stock/:ticker" element={<StockDetail />} />
                     <Route path="/portfolio" element={<Portfolio />} />
                     <Route path="/leaderboard" element={<Leaderboard />} />
+                    {FEATURE_FLAGS.JOBS_ENABLED && <Route path="/jobs" element={<Jobs />} />}
+                    {FEATURE_FLAGS.GAMBLING_ENABLED && <Route path="/gambling" element={<Gambling />} />}
+                    {FEATURE_FLAGS.GAMBLING_ENABLED && <Route path="/gambling/slots" element={<SlotMachine />} />}
+                    {FEATURE_FLAGS.GAMBLING_ENABLED && <Route path="/gambling/blackjack" element={<Blackjack />} />}
+                    {FEATURE_FLAGS.GAMBLING_ENABLED && <Route path="/gambling/roulette" element={<Roulette />} />}
+                    {FEATURE_FLAGS.GAMBLING_ENABLED && <Route path="/gambling/mines" element={<Mines />} />}
+                    {FEATURE_FLAGS.JOBS_ENABLED && <Route path="/jobs/mcking" element={<McKingJob />} />}
+                    {FEATURE_FLAGS.JOBS_ENABLED && <Route path="/jobs/secretary" element={<SecretaryJob />} />}
+                    {!FEATURE_FLAGS.JOBS_ENABLED && <Route path="/jobs/*" element={<FeatureDisabled featureName="Jobs" />} />}
+                    {!FEATURE_FLAGS.GAMBLING_ENABLED && <Route path="/gambling/*" element={<FeatureDisabled featureName="Gambling" />} />}
                   </Routes>
                 </Layout>
               </ProtectedRoute>

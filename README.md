@@ -174,42 +174,63 @@ cd frontend
 npm test
 ```
 
-## Data Structure
+## Data Backup System
 
-### Stock Data
-```json
-{
-  "ticker": "AZT",
-  "name": "AZT Organisation",
-  "price": 421.50,
-  "change": 3.20,
-  "volume": 1200
-}
+The application includes an automated backup system to prevent data loss and ensure stability.
+
+### Features
+- **Automatic Backups**: Creates backups every 12 hours automatically
+- **Manual Backups**: Can be triggered manually via API or command line
+- **Atomic Writes**: Prevents data corruption during file operations
+- **Auto-recovery**: Automatically recovers from corrupted files using backups
+- **Cleanup**: Automatically deletes backups older than 7 days
+- **Backup Verification**: Validates backup integrity
+
+### Backup Commands
+
+```bash
+# Create a new backup
+npm run backup
+
+# List all available backups
+npm run backup:list
+
+# Clean up old backups (>7 days)
+npm run backup:cleanup
 ```
 
-### User Portfolio
-```json
-{
-  "id": "player1",
-  "username": "Alice",
-  "cash": 1000,
-  "holdings": [
-    { "ticker": "AZT", "shares": 10 }
-  ],
-  "netWorth": 5000
-}
+### Backup API Endpoints
+
+```bash
+# Manually trigger backup
+POST /api/admin/backup
+
+# List available backups
+GET /api/admin/backups
 ```
 
-### Price History
-```json
-{
-  "AZT": [
-    {
-      "timestamp": "2025-08-20T12:00:00Z",
-      "price": 400
-    }
-  ]
-}
+### Backup Storage
+- Backups are stored in `data/backups/` directory
+- Files are named with timestamp: `authors-2025-08-30T12-00-00-000Z.json`
+- Each backup contains: `authors.json`, `history.json`, `users.json`
+- Old backups (>7 days) are automatically cleaned up
+
+### Data Recovery
+If a data file becomes corrupted, the system will:
+1. Detect the corruption during file read
+2. Search for the most recent backup
+3. Restore the data from backup
+4. Log the recovery action
+
+### Manual Recovery
+If needed, you can manually restore from backup:
+
+```bash
+# List backups
+npm run backup:list
+
+# Copy the desired backup file to replace corrupted data
+cp data/backups/authors-2025-08-30T12-00-00-000Z.json data/authors.json
 ```
 
 ## Features in Detail

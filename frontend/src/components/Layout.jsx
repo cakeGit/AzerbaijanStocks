@@ -6,6 +6,7 @@ import TickerTape from './TickerTape';
 import BalanceWidget from './BalanceWidget';
 import EmbedCodeGenerator from './EmbedCodeGenerator';
 import CompactDownloadsStatusWidget from './CompactDownloadsStatusWidget';
+import { FEATURE_FLAGS } from '../config/features';
 
 const Layout = ({ children }) => {
   const location = useLocation();
@@ -17,6 +18,8 @@ const Layout = ({ children }) => {
     { name: 'Dashboard', href: '/' },
     { name: 'Portfolio', href: '/portfolio' },
     { name: 'Leaderboard', href: '/leaderboard' },
+    ...(FEATURE_FLAGS.JOBS_ENABLED ? [{ name: 'J*bs', href: '/jobs' }] : []),
+    ...(FEATURE_FLAGS.GAMBLING_ENABLED ? [{ name: 'Gambling 🤑', href: '/gambling' }] : []),
   ];
 
   const handleLogout = () => {
@@ -93,7 +96,9 @@ const Layout = ({ children }) => {
       <TickerTape />
 
       {/* Main Content */}
-      <main className="main-content max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-1 pt-28">
+      <main
+        className={`main-content ${location.pathname === '/jobs' ? 'h-full min-h-0 flex-1 w-full px-0 py-0' : 'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-1 pt-28'}`}
+      >
         {children}
       </main>
 

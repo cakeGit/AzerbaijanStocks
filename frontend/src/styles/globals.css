@@ -245,3 +245,34 @@ body {
 .text-azt-red-dark {
   color: #ff623f;
 }
+
+/* Shake animation for incorrect drops */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+  20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+.shake {
+  animation: shake 0.5s ease-in-out;
+}
+
+/* Strong, targeted rule for the Mines game so it matches the site game-card theme
+   and resists parent/background overrides during runtime. Keeps theme tokens and
+   uses !important only where necessary to diagnose cascade issues. */
+.mines.game-card {
+  background-color: var(--color-card) !important;
+  color: var(--color-card-foreground) !important;
+  border-color: var(--color-border) !important;
+  box-shadow: var(--shadow-md) !important;
+}
+
+.mines.game-card .w-12 {
+  /* ensure grid tiles inherit readable foreground in dark/light */
+  color: var(--color-card-foreground) !important;
+}
+
+.mines.game-card .bg-input {
+  background-color: var(--color-input) !important;
+  color: var(--color-card-foreground) !important;
+}

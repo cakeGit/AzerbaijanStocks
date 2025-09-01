@@ -425,41 +425,12 @@ const TopPerformers = memo(() => {
       if (!stocks.length) return;
 
       setLoading(true);
-      const performers = [];
 
-      // Calculate 24h change for each stock
-      for (const stock of stocks) {
-        try {
-          // Get 24h history
-          const response = await stocksApi.getStockHistory(stock.ticker, '1D', 'hour');
-          const historyData = response.data.data || response.data;
-
-          if (historyData && historyData.length >= 2) {
-            const recentData = historyData;
-            const currentPrice = recentData[recentData.length - 1].price;
-            const dayAgoPrice = recentData[0].price;
-
-            const change24h = ((currentPrice - dayAgoPrice) / dayAgoPrice) * 100;
-
-            performers.push({
-              ...stock,
-              change24h: parseFloat(change24h.toFixed(2))
-            });
-          } else {
-            // Fallback to current change if no history
-            performers.push({
-              ...stock,
-              change24h: stock.change || 0
-            });
-          }
-        } catch (error) {
-          console.error(`Error fetching history for ${stock.ticker}:`, error);
-          performers.push({
-            ...stock,
-            change24h: stock.change || 0
-          });
-        }
-      }
+      // Use the change data already available from the stocks API instead of recalculating
+      const performers = stocks.map(stock => ({
+        ...stock,
+        change24h: stock.change || 0
+      }));
 
       // Sort by 24h change descending and take top 5
       const sorted = performers
