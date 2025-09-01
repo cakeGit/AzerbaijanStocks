@@ -30,12 +30,21 @@ async function generateHistoricalData() {
   const dataDir = path.join(__dirname, 'data');
   const historyFile = path.join(dataDir, 'history.json');
 
+  // Ensure data directory exists
+  try {
+    await fs.mkdir(dataDir, { recursive: true });
+  } catch (error) {
+    console.warn('Failed to create data directory:', error.message);
+  }
+
   // Read existing data
   let existingHistory = {};
   try {
     const data = await fs.readFile(historyFile, 'utf8');
     existingHistory = JSON.parse(data);
   } catch (error) {
+    // File doesn't exist or is invalid, start with empty object
+    existingHistory = {};
   }
 
   // Generate data for the past year

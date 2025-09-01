@@ -47,6 +47,8 @@ const QuickTradeModal = ({ stock, userId, isOpen, onClose }) => {
     : (userData?.cash || 0) + totalCost;
 
   const handleTrade = async () => {
+    if (loading) return; // Prevent double clicks
+    
     if (!canAfford) {
       setError(`Insufficient ${tradeType === 'buy' ? 'funds' : 'shares'}`);
       return;

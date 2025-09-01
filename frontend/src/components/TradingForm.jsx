@@ -29,6 +29,8 @@ const TradingForm = ({ stock, onTrade, loading, portfolio }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     
+    if (isSubmitting) return; // Prevent double clicks
+    
     const sharesNumber = parseInt(shares);
     if (!sharesNumber || sharesNumber <= 0) {
       setMessage('Please enter a valid number of shares');

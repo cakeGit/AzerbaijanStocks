@@ -187,6 +187,12 @@ async function readJsonFile(filePath, defaultValue = []) {
     }
     return parsed;
   } catch (error) {
+    // If file doesn't exist, create it with default value
+    if (error.code === 'ENOENT') {
+      console.log(`Creating new file ${filePath} with default value`);
+      await writeJsonFile(filePath, defaultValue);
+      return defaultValue;
+    }
     console.warn(`Failed to read ${filePath}:`, error.message);
     // Try to recover from backup if main file is corrupted
     const backupPath = await findLatestBackup(filePath);
@@ -1049,7 +1055,7 @@ app.get('/api/user/:userId', authenticateToken, async (req, res) => {
     }
     
     // Migrate old shares format to holdings if needed and consolidate
-    if (user.shares && Object.keys(user.shares).length > 0) {
+    if (user.shares && Object.keys(user.shares).length > 0 && (!user.holdings || user.holdings.length === 0)) {
       // Initialize holdings if it doesn't exist
       if (!user.holdings) {
         user.holdings = [];

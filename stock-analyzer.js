@@ -20,6 +20,15 @@ async function readJsonFile(filePath, defaultValue = []) {
     return JSON.parse(data);
   } catch (error) {
     console.warn(`Failed to read ${filePath}:`, error.message);
+    // If file doesn't exist, create it with default value
+    if (error.code === 'ENOENT') {
+      try {
+        await fs.writeFile(filePath, JSON.stringify(defaultValue, null, 2));
+        console.log(`Created ${filePath} with default value`);
+      } catch (writeError) {
+        console.error(`Failed to create ${filePath}:`, writeError.message);
+      }
+    }
     return defaultValue;
   }
 }

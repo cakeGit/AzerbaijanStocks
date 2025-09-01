@@ -20,15 +20,21 @@ async function createBackup() {
 
     const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
     const backupFiles = [
-      { source: path.join(DATA_DIR, 'authors.json'), target: path.join(BACKUP_DIR, `authors-${timestamp}.json`) },
-      { source: path.join(DATA_DIR, 'history.json'), target: path.join(BACKUP_DIR, `history-${timestamp}.json`) },
-      { source: path.join(DATA_DIR, 'users.json'), target: path.join(BACKUP_DIR, `users-${timestamp}.json`) }
+      { source: path.join(DATA_DIR, 'authors.json'), target: path.join(BACKUP_DIR, `authors-${timestamp}.json`), defaultContent: [] },
+      { source: path.join(DATA_DIR, 'history.json'), target: path.join(BACKUP_DIR, `history-${timestamp}.json`), defaultContent: {} },
+      { source: path.join(DATA_DIR, 'users.json'), target: path.join(BACKUP_DIR, `users-${timestamp}.json`), defaultContent: [] }
     ];
 
-    for (const { source, target } of backupFiles) {
+    for (const { source, target, defaultContent } of backupFiles) {
       try {
-        // Check if source file exists
-        await fs.access(source);
+        // Check if source file exists, create if not
+        try {
+          await fs.access(source);
+        } catch (error) {
+          // File doesn't exist, create it with default content
+          await fs.writeFile(source, JSON.stringify(defaultContent, null, 2));
+          console.log(`Created ${path.basename(source)} with default content`);
+        }
         // Copy file
         await fs.copyFile(source, target);
         console.log(`✅ Created backup: ${path.basename(target)}`);
